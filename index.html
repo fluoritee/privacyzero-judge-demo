@@ -2800,6 +2800,27 @@ svg {
   margin-top: 12px;
 }
 
+/* The current-status card intentionally mirrors the privacy panel shown in the
+   presentation. Event and history views remain minimal below. */
+.privacy-status-card {
+  border-left: 5px solid var(--green-dark);
+  box-shadow: 0 8px 24px rgb(22 43 56 / 8%);
+}
+
+.privacy-status-card .flow-ring {
+  animation: flow-breathe 2.2s ease-in-out infinite;
+}
+
+.privacy-status-card .patient-card-footer time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+}
+
+@keyframes flow-breathe {
+  0%, 100% { filter: saturate(0.92); transform: rotate(-90deg) scale(1); }
+  50% { filter: saturate(1.08); transform: rotate(-90deg) scale(1.025); }
+}
+
 .status-card {
   border-left: 5px solid var(--green-dark);
   box-shadow: 0 8px 24px rgb(22 43 56 / 8%);
@@ -3386,6 +3407,24 @@ function actionGuide(bed) {
   }[level] || "현재 상태를 확인해주세요.";
 }
 
+function measuredRate(value) {
+  const rate = Number(value);
+  return Number.isFinite(rate) && rate > 0 ? `${rate.toFixed(1)} Hz` : "기록 없음";
+}
+
+function privacyToggle(label, value) {
+  const enabled = Boolean(value);
+  return `
+    <div class="privacy-row">
+      <span>${escapeHtml(label)}</span>
+      <span class="privacy-toggle${enabled ? " is-true" : ""}" aria-label="${escapeHtml(label)} ${enabled ? "true" : "false"}">
+        <i aria-hidden="true"></i>
+        <b>${enabled ? "true" : "false"}</b>
+      </span>
+    </div>
+  `;
+}
+
 function renderPrivacy() {
   const beds = [...state.beds];
   elements.patientCount.textContent = String(beds.length);
@@ -3400,12 +3439,16 @@ function renderPrivacy() {
     .map((bed) => {
       const issue = hasPrivacyIssue(bed);
       const level = String(bed.display_level ?? bed.risk_level ?? "U");
+      const observedRate = Number(bed.metadata_refresh_hz_observed);
+      const flow = Number.isFinite(observedRate)
+        ? Math.max(0, Math.min(100, (observedRate / 5) * 100))
+        : 0;
       return `
-        <article class="patient-card status-card level-${escapeHtml(level.toLowerCase())}${issue ? " has-privacy-issue" : ""}">
+        <article class="patient-card privacy-status-card${issue ? " has-privacy-issue" : ""}">
           <header class="patient-card-header">
             <div>
-              <span class="patient-bed">침상</span>
-              <h3>${escapeHtml(bed.bed_id)} 침상</h3>
+              <span class="patient-bed">${escapeHtml(bed.bed_id)}</span>
+              <h3>${escapeHtml(bed.bed_id)} 환자</h3>
             </div>
             <span class="privacy-result">
               <i aria-hidden="true"></i>
@@ -3413,25 +3456,30 @@ function renderPrivacy() {
             </span>
           </header>
 
-          <div class="status-card-body">
-            <div class="status-primary">
-              <span>현재 상태</span>
-              <strong class="status-level level-${escapeHtml(level.toLowerCase())}">Level ${escapeHtml(level)}</strong>
-              <h3>${escapeHtml(displayRiskLabel(bed))}</h3>
-              <p>${escapeHtml(actionGuide(bed))}</p>
+          <div class="patient-card-body">
+            <div class="privacy-controls">
+              <div class="privacy-mode-row">
+                <span>Privacy Mode</span>
+                <strong>${escapeHtml(bed.privacy_mode || "확인 필요")}</strong>
+              </div>
+              ${privacyToggle("Raw 표시 여부", bed.raw_displayed)}
+              ${privacyToggle("Raw 저장 여부", bed.raw_saved_by_app)}
+              ${privacyToggle("Raw 전송 여부", bed.raw_transmitted_by_app)}
             </div>
-            <div class="privacy-proof">
-              <span class="privacy-proof-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg>
-              </span>
-              <strong>프라이버시 보호</strong>
-              <span>원본 영상은 표시·저장·전송하지 않습니다.</span>
+            <div class="metadata-flow">
+              <div class="flow-ring" style="--flow:${flow.toFixed(1)}" aria-label="기록 수신율 ${escapeHtml(measuredRate(observedRate))}">
+                <div>
+                  <strong>${escapeHtml(measuredRate(observedRate))}</strong>
+                  <span>기록 수신율</span>
+                </div>
+              </div>
+              <p>기록 데이터 갱신</p>
             </div>
           </div>
 
-          <footer class="status-card-footer">
-            <span class="monitoring-state"><i aria-hidden="true"></i> 기록 화면 작동 중</span>
-            <time data-live-clock datetime="">--:--:--</time>
+          <footer class="patient-card-footer">
+            <span>마지막 화면 갱신 <time data-live-clock datetime="">--:--:--</time></span>
+            <span>Display Level ${escapeHtml(level)} · Current ${escapeHtml(String(bed.current_level ?? level))}</span>
           </footer>
         </article>
       `;
