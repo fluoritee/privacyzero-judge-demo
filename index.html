@@ -1,0 +1,3186 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Privacy-Zero · 심사위원용 기록 데모</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjcyIiBmaWxsPSIjMTcyMTJiIi8+CiAgPHBhdGggZD0iTTI1NiA3MiA0MTAgMTMydjExMmMwIDk5LTYwIDE2NC0xNTQgMjAwLTk0LTM2LTE1NC0xMDEtMTU0LTIwMFYxMzJMMjU2IDcyWiIgZmlsbD0iIzE2NzQ1YiIvPgogIDxwYXRoIGQ9Ik0yNTYgMTE2IDM2NiAxNTh2ODVjMCA3My00MSAxMjEtMTEwIDE1My02OS0zMi0xMTAtODAtMTEwLTE1M3YtODVsMTEwLTQyWiIgZmlsbD0iI2ZmZiIvPgogIDxyZWN0IHg9IjE5NCIgeT0iMjIzIiB3aWR0aD0iMTI0IiBoZWlnaHQ9IjEwNiIgcng9IjE2IiBmaWxsPSIjMTcyMTJiIi8+CiAgPHBhdGggZD0iTTIxOCAyMjV2LTMxYzAtMjEgMTctMzggMzgtMzhzMzggMTcgMzggMzh2MzEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3MjEyYiIgc3Ryb2tlLXdpZHRoPSIyMCIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjI2OCIgcj0iMTMiIGZpbGw9IiNmZmYiLz4KICA8cmVjdCB4PSIyNTAiIHk9IjI3NCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjMwIiByeD0iNiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K" type="image/svg+xml">
+  <style>
+:root {
+  color-scheme: light;
+  font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --ink: #111418;
+  --muted: #707982;
+  --line: #cfd4d8;
+  --canvas: #f1f3f4;
+  --surface: #ffffff;
+  --band: #d9d9d9;
+  --blue: #0879c5;
+  --cyan: #59c8ef;
+  --cyan-soft: #8ad8f2;
+  --green: #00b652;
+  --green-dark: #11813d;
+  --red: #e31b12;
+  --amber: #bd6900;
+  --violet: #6850a6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+.candidate-review-banner {
+  position: fixed;
+  z-index: 1000;
+  top: 8px;
+  left: 50%;
+  max-width: calc(100vw - 24px);
+  padding: 8px 14px;
+  color: #1f1500;
+  background: #ffd54a;
+  border: 2px solid #7a5000;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+  font-size: clamp(10px, 1.1vw, 13px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+body {
+  color: var(--ink);
+  background: var(--canvas);
+}
+
+button,
+select {
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgb(8 121 197 / 25%);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+}
+
+.app-shell {
+  width: min(1580px, 100%);
+  height: 100dvh;
+  min-height: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 92px minmax(0, 1fr) 112px;
+  overflow: hidden;
+  background: #fff;
+  border-right: 1px solid #202326;
+  border-left: 1px solid #202326;
+}
+
+.site-header {
+  min-width: 0;
+  padding: 16px clamp(24px, 4vw, 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: #fff;
+  border-bottom: 1px solid #e3e6e8;
+}
+
+.site-brand,
+.facility-area {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.site-brand {
+  gap: 14px;
+}
+
+.brand-symbol {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  display: block;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.brand-symbol img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.site-brand h1 {
+  margin: 0;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.site-brand p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.facility-area {
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.facility-area > strong {
+  font-size: clamp(18px, 2vw, 28px);
+}
+
+.facility-avatar {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: #7d848d;
+  background: #f1f2f3;
+  border-radius: 50%;
+}
+
+.facility-avatar svg {
+  width: 39px;
+  height: 39px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.connection-state {
+  min-width: 0;
+  margin-right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.connection-state #connectionStatus {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgb(0 182 82 / 12%);
+}
+
+.is-disconnected .live-dot {
+  background: var(--red);
+  box-shadow: 0 0 0 4px rgb(227 27 18 / 12%);
+}
+
+.is-delayed .live-dot {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgb(201 119 0 / 14%);
+}
+
+.screen-stage {
+  min-width: 0;
+  min-height: 0;
+  padding: clamp(24px, 3vw, 44px) clamp(28px, 4vw, 66px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #a5aaae transparent;
+  scrollbar-width: thin;
+}
+
+.app-view[hidden] {
+  display: none;
+}
+
+.privacy-view {
+  width: min(930px, 100%);
+  margin: 0 auto;
+}
+
+.privacy-heading {
+  min-height: 92px;
+  padding: 14px 24px;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  background: var(--band);
+}
+
+.heading-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+}
+
+.heading-icon svg {
+  width: 53px;
+  height: 53px;
+  fill: none;
+  stroke: #090b0d;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.privacy-heading p,
+.metadata-heading p {
+  margin: 0 0 3px;
+  color: #5f676d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.privacy-heading h2,
+.metadata-heading h2 {
+  margin: 0;
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.1;
+}
+
+.privacy-summary {
+  display: flex;
+  gap: 8px;
+}
+
+.privacy-summary span {
+  min-width: 80px;
+  min-height: 52px;
+  padding: 7px 10px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  color: #5f676d;
+  background: rgb(255 255 255 / 72%);
+  border: 1px solid #c2c6c9;
+  border-radius: 6px;
+  font-size: 10px;
+}
+
+.privacy-summary strong {
+  color: var(--green-dark);
+  font-size: 18px;
+}
+
+.privacy-summary span:last-child strong {
+  color: var(--red);
+}
+
+.privacy-toolbar {
+  min-height: 52px;
+  padding: 8px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.privacy-toolbar p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.privacy-toolbar p strong {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.privacy-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.privacy-toolbar select {
+  min-height: 34px;
+  padding: 0 32px 0 9px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #aeb5ba;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.privacy-list {
+  display: grid;
+  gap: 14px;
+}
+
+.patient-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #d5d7d9;
+  border-radius: 7px;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 14%);
+}
+
+.patient-card.has-privacy-issue {
+  border-color: var(--red);
+  box-shadow: inset 4px 0 var(--red), 0 3px 8px rgb(0 0 0 / 14%);
+}
+
+.patient-card.has-source-issue {
+  border-color: var(--amber);
+  box-shadow: inset 4px 0 var(--amber), 0 3px 8px rgb(0 0 0 / 14%);
+}
+
+.patient-card-header {
+  min-height: 52px;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid #e0e3e5;
+}
+
+.patient-bed {
+  display: block;
+  margin-bottom: 1px;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.patient-card h3,
+.event-card h3 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.privacy-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-dark);
+  font-size: 11px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.privacy-result i {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.has-privacy-issue .privacy-result {
+  color: var(--red);
+}
+
+.patient-card-body {
+  min-height: 170px;
+  padding: 12px 22px;
+  display: grid;
+  grid-template-columns: minmax(310px, 1fr) 150px;
+  align-items: center;
+  gap: 26px;
+}
+
+.privacy-controls {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.privacy-mode-row,
+.privacy-row {
+  min-height: 32px;
+  display: grid;
+  grid-template-columns: minmax(118px, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.privacy-mode-row {
+  margin-bottom: 3px;
+}
+
+.privacy-mode-row > span,
+.privacy-row > span:first-child {
+  font-size: 12px;
+  font-weight: 780;
+}
+
+.privacy-mode-row strong {
+  min-width: 142px;
+  min-height: 34px;
+  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--cyan-soft);
+  border-radius: 5px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.privacy-toggle {
+  position: relative;
+  width: 82px;
+  height: 30px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  color: #fff;
+  background: var(--blue);
+  border: 2px solid var(--blue);
+  border-radius: 15px;
+  transition: background-color 260ms ease, border-color 260ms ease;
+}
+
+.privacy-toggle i {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  z-index: 2;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 18%);
+  transition: transform 260ms ease;
+}
+
+.privacy-toggle b {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  font-size: 11px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.privacy-toggle.is-true {
+  color: #6d7276;
+  background: #d0d2d4;
+  border-color: #d0d2d4;
+}
+
+.privacy-toggle.is-true i {
+  transform: translateX(52px);
+}
+
+.privacy-toggle.is-true b {
+  right: auto;
+  left: 8px;
+}
+
+.metadata-flow {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+}
+
+.flow-ring {
+  width: 108px;
+  height: 108px;
+  padding: 13px;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--blue) calc(var(--flow) * 1%), #dfeaf0 0);
+  border-radius: 50%;
+  transform: rotate(-90deg);
+}
+
+.flow-ring > div {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  background: #fff;
+  border-radius: 50%;
+  transform: rotate(90deg);
+}
+
+.flow-ring strong {
+  color: var(--blue);
+  font-size: 19px;
+}
+
+.flow-ring span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.metadata-flow p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.patient-card-footer {
+  min-height: 32px;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  background: #f8f9fa;
+  border-top: 1px solid #e0e3e5;
+  font-size: 9px;
+}
+
+.events-view {
+  width: min(1220px, 100%);
+  margin: 0 auto;
+}
+
+.event-heading {
+  min-height: 96px;
+  padding: 0 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-bottom: 1px solid #73787c;
+}
+
+.event-heading-copy {
+  display: flex;
+  align-items: center;
+}
+
+.event-heading h2 {
+  margin: 0;
+  font-size: clamp(40px, 5vw, 66px);
+  line-height: 1;
+}
+
+.alarm-toggle {
+  width: 70px;
+  height: 70px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: #090b0d;
+  background: #fff;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.alarm-toggle:hover {
+  background: #f1f2f3;
+}
+
+.alarm-toggle svg {
+  grid-area: 1 / 1;
+  width: 52px;
+  height: 52px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.alarm-toggle .bell-off {
+  display: none;
+}
+
+.alarm-toggle.is-muted {
+  color: #c44b00;
+  background: #fff4ec;
+}
+
+.alarm-toggle.is-muted .bell-on {
+  display: none;
+}
+
+.alarm-toggle.is-muted .bell-off {
+  display: block;
+}
+
+.alarm-state {
+  min-height: 38px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  background: #edf8f2;
+  border-bottom: 1px solid #c9e5d6;
+  font-size: 10px;
+}
+
+.alarm-state strong {
+  color: var(--green-dark);
+}
+
+.alarm-state > span:last-child {
+  margin-left: auto;
+}
+
+.alarm-state-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+.alarm-state.is-muted {
+  background: #fff4ec;
+  border-color: #eccbb5;
+}
+
+.alarm-state.is-muted strong {
+  color: #a44000;
+}
+
+.alarm-state.is-muted .alarm-state-dot {
+  background: #c44b00;
+}
+
+.is-alarming .alarm-state:not(.is-muted) {
+  background: #fff1f0;
+  border-color: #efc3c0;
+}
+
+.is-alarming .alarm-state:not(.is-muted) strong {
+  color: var(--red);
+}
+
+.is-alarming .alarm-state:not(.is-muted) .alarm-state-dot {
+  background: var(--red);
+  box-shadow: 0 0 0 4px rgb(227 27 18 / 12%);
+}
+
+.event-list {
+  padding: 16px 6px 2px 0;
+  display: grid;
+  gap: 14px;
+}
+
+.event-card {
+  min-width: 0;
+  min-height: 154px;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  background: #fff;
+  border: 1px solid #a7adb2;
+  border-left: 5px solid var(--amber);
+  border-radius: 3px;
+}
+
+.event-card.level-3 {
+  border-left-color: var(--red);
+}
+
+.event-card.level-2 {
+  border-left-color: var(--amber);
+}
+
+.event-card.level-u {
+  border-left-color: var(--violet);
+}
+
+.event-card.level-1 {
+  border-left-color: var(--blue);
+}
+
+.patient-photo-placeholder {
+  width: 82px;
+  height: 82px;
+  margin: 18px 14px;
+  display: grid;
+  place-items: center;
+  color: #747b80;
+  background: #fff;
+  border: 1px dashed #aeb5ba;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.event-card-content {
+  min-width: 0;
+  padding: 12px 16px 10px 0;
+}
+
+.event-card-content > header {
+  min-height: 42px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.event-card time {
+  color: #747b80;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.event-fields {
+  min-height: 62px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr 0.9fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.event-fields > div {
+  min-width: 0;
+}
+
+.event-fields span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.event-fields strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+
+.status-pair {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.status-chip {
+  width: fit-content;
+  margin: 0 !important;
+  padding: 3px 6px;
+  color: #40505a !important;
+  background: #edf1f3;
+  border-radius: 999px;
+  font-size: 9px !important;
+  line-height: 1.2;
+}
+
+.status-chip b {
+  margin-right: 4px;
+}
+
+.status-ok,
+.status-tracking {
+  color: #176340 !important;
+  background: #e4f5eb;
+}
+
+.status-degraded,
+.status-stale,
+.status-floor_evidence_stale {
+  color: #8b5300 !important;
+  background: #fff1d6;
+}
+
+.status-unavailable {
+  color: #9a2525 !important;
+  background: #fde5e5;
+}
+
+.risk-badge {
+  width: fit-content;
+  min-width: 116px;
+  min-height: 42px;
+  padding: 5px 10px;
+  display: grid !important;
+  align-content: center;
+  justify-items: center;
+  color: #fff;
+  background: var(--amber);
+  border-radius: 6px;
+  line-height: 1.05;
+}
+
+.risk-badge small {
+  margin-top: 3px;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.risk-3 {
+  background: var(--red);
+}
+
+.risk-2 {
+  background: var(--amber);
+}
+
+.risk-u {
+  background: var(--violet);
+}
+
+.risk-1 {
+  background: var(--blue);
+}
+
+.value-true {
+  color: var(--green-dark);
+}
+
+.value-false {
+  color: var(--muted);
+}
+
+.event-actions {
+  min-height: 34px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  border-top: 1px solid #e0e3e5;
+}
+
+.ack-state {
+  margin-right: auto;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.ack-RESPONSE_IN_PROGRESS,
+.ack-RESOLVED_IN_PROGRESS {
+  color: var(--blue);
+}
+
+.ack-ACKNOWLEDGED_MONITORING,
+.ack-CLOSED {
+  color: var(--green-dark);
+}
+
+.ack-RESOLVED_UNACKNOWLEDGED,
+.ack-OPEN_UNACKNOWLEDGED {
+  color: var(--red);
+}
+
+.outline-button,
+.confirm-button {
+  min-height: 28px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.outline-button {
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #9ea6ac;
+}
+
+.confirm-button {
+  color: #fff;
+  background: var(--green-dark);
+  border: 1px solid var(--green-dark);
+}
+
+.outline-button:disabled,
+.confirm-button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.metadata-view {
+  width: 100%;
+}
+
+.metadata-heading {
+  min-height: 100px;
+  padding: 0 12px 18px;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.metadata-icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+}
+
+.metadata-icon svg {
+  width: 60px;
+  height: 60px;
+  fill: none;
+  stroke: #101214;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.metadata-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.metadata-ai-shadow {
+  margin: 0 12px 22px;
+  padding: 18px 20px;
+  border: 2px solid #7057c7;
+  border-radius: 18px;
+  background: #f7f4ff;
+  box-shadow: 0 8px 24px rgba(54, 34, 121, 0.1);
+}
+
+.metadata-ai-shadow[hidden] {
+  display: none;
+}
+
+.metadata-ai-shadow-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.metadata-ai-shadow-title p,
+.metadata-ai-shadow-title h3 {
+  margin: 0;
+}
+
+.metadata-ai-shadow-title p {
+  color: #5c4b8f;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.metadata-ai-shadow-title h3 {
+  margin-top: 3px;
+  font-size: 1.05rem;
+}
+
+.shadow-badge {
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: #5942a6;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.metadata-ai-shadow dl {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.metadata-ai-shadow dl div {
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #d8cff5;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.metadata-ai-shadow dt {
+  color: #6b6381;
+  font-size: 0.73rem;
+}
+
+.metadata-ai-shadow dd {
+  margin: 5px 0 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .metadata-ai-shadow dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.metadata-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.metadata-table caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.metadata-table th,
+.metadata-table td {
+  min-width: 0;
+  padding: 13px 8px;
+  border-bottom: 1.5px solid #16191b;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.metadata-table th {
+  font-size: 11px;
+  font-weight: 850;
+  vertical-align: bottom;
+}
+
+.metadata-table td {
+  color: #25292c;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+.metadata-table th:nth-child(1) {
+  width: 11%;
+  text-align: left;
+}
+
+.metadata-table th:nth-child(2) {
+  width: 9%;
+}
+
+.metadata-table th:nth-child(3) {
+  width: 9%;
+}
+
+.metadata-table th:nth-child(4) {
+  width: 10%;
+}
+
+.metadata-table th:nth-child(5) {
+  width: 11%;
+}
+
+.metadata-table th:nth-child(6) {
+  width: 12%;
+}
+
+.metadata-table th:nth-child(7) {
+  width: 13%;
+}
+
+.metadata-table th:nth-child(8) {
+  width: 14%;
+}
+
+.metadata-table th:nth-child(9) {
+  width: 11%;
+}
+
+.metadata-table td:first-child {
+  text-align: left;
+}
+
+.auto-log-toggle {
+  position: relative;
+  width: 88px;
+  height: 34px;
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+  color: #fff;
+  background: var(--green);
+  border: 2px solid var(--green);
+  border-radius: 17px;
+  transition: background-color 260ms ease, border-color 260ms ease;
+}
+
+.auto-log-toggle i {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  z-index: 2;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 260ms ease;
+}
+
+.auto-log-toggle b {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  font-size: 11px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.auto-log-toggle.is-unsaved {
+  background: #f10b08;
+  border-color: #f10b08;
+}
+
+.auto-log-toggle.is-unsaved i {
+  transform: translateX(54px);
+}
+
+.auto-log-toggle.is-unsaved b {
+  right: auto;
+  left: 9px;
+}
+
+.metadata-empty,
+.empty-state {
+  min-height: 240px;
+  padding: 30px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  border: 1px dashed #aeb5ba;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.metadata-empty[hidden] {
+  display: none;
+}
+
+.event-empty {
+  min-height: 360px;
+  align-content: center;
+  gap: 5px;
+}
+
+.bottom-nav {
+  position: relative;
+  min-width: 0;
+  padding: 16px clamp(28px, 4vw, 66px) 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 3vw, 48px);
+  background: #fff;
+  border-top: 1px solid #cfd2d4;
+  z-index: 5;
+}
+
+.nav-button {
+  position: relative;
+  min-width: 0;
+  min-height: 72px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: #0e1012;
+  background: #f0f0f0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: clamp(15px, 1.8vw, 22px);
+  font-weight: 850;
+}
+
+.nav-button:hover {
+  border-color: #aeb3b6;
+}
+
+.nav-button.is-active {
+  background: #d8d8d8;
+  border-color: #c9c9c9;
+}
+
+.nav-button svg {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  z-index: 1;
+}
+
+.nav-button span {
+  position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  z-index: 1;
+}
+
+.nav-count {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--red);
+  border-radius: 11px;
+  font-size: 10px;
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 126px;
+  max-width: min(380px, calc(100vw - 28px));
+  padding: 11px 14px;
+  z-index: 20;
+  color: #fff;
+  background: #20262b;
+  border-radius: 6px;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 20%);
+  font-size: 11px;
+  font-weight: 750;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.is-error {
+  background: var(--red);
+}
+
+/* Single-window presentation view. The data and ACK path remain unchanged. */
+.compact-mode .app-shell {
+  grid-template-rows: 72px minmax(0, 1fr);
+}
+
+.compact-mode .site-header {
+  padding: 10px 20px;
+}
+
+.compact-mode .brand-symbol,
+.compact-mode .facility-avatar {
+  width: 42px;
+  height: 42px;
+}
+
+.compact-mode .site-brand h1 {
+  font-size: 22px;
+}
+
+.compact-mode .site-brand p,
+.compact-mode .facility-avatar,
+.compact-mode .bottom-nav {
+  display: none;
+}
+
+.compact-mode .screen-stage {
+  padding: 16px;
+}
+
+.compact-mode .event-heading {
+  min-height: 70px;
+}
+
+.compact-mode .event-heading h2 {
+  font-size: 38px;
+}
+
+.compact-mode .alarm-toggle {
+  width: 52px;
+  height: 52px;
+}
+
+.compact-mode .alarm-toggle svg {
+  width: 36px;
+  height: 36px;
+}
+
+.compact-mode .event-list {
+  padding-top: 12px;
+}
+
+.compact-mode .compact-event-card {
+  min-height: 0;
+  display: block;
+}
+
+.compact-mode .compact-event-card .event-card-content {
+  padding: 16px;
+}
+
+.compact-mode .compact-status-grid {
+  min-height: 112px;
+  padding: 14px 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 12px;
+}
+
+.compact-mode .compact-status-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.compact-mode .compact-status-grid strong {
+  display: block;
+  font-size: 22px;
+}
+
+.compact-mode .compact-level.level-0 {
+  color: var(--green-dark);
+}
+
+.compact-mode .compact-level.level-1 {
+  color: var(--blue);
+}
+
+.compact-mode .compact-level.level-2 {
+  color: var(--amber);
+}
+
+.compact-mode .compact-level.level-3 {
+  color: var(--red);
+}
+
+.compact-mode .compact-level.level-u {
+  color: var(--violet);
+}
+
+.compact-mode .candidate-review-banner {
+  top: auto;
+  right: 8px;
+  bottom: 8px;
+  left: auto;
+  max-width: 260px;
+  padding: 5px 8px;
+  border-width: 1px;
+  border-radius: 6px;
+  box-shadow: none;
+  font-size: 9px;
+  transform: none;
+}
+
+.compact-mode .compact-event-card .event-actions {
+  min-height: 54px;
+}
+
+.compact-mode .compact-event-card .outline-button,
+.compact-mode .compact-event-card .confirm-button {
+  min-width: 104px;
+  min-height: 42px;
+  font-size: 14px;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-rows: 78px minmax(0, 1fr) 96px;
+  }
+
+  .site-header {
+    padding: 12px 24px;
+  }
+
+  .brand-symbol,
+  .facility-avatar {
+    width: 46px;
+    height: 46px;
+  }
+
+  .site-brand h1 {
+    font-size: 24px;
+  }
+
+  .facility-area > strong {
+    font-size: 18px;
+  }
+
+  .connection-state {
+    display: none;
+  }
+
+  .screen-stage {
+    padding: 24px;
+  }
+
+  .event-fields {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    row-gap: 9px;
+  }
+
+  .metadata-table {
+    min-width: 1120px;
+  }
+
+  .bottom-nav {
+    padding: 12px 24px 16px;
+    gap: 14px;
+  }
+
+  .nav-button {
+    min-height: 64px;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .nav-button svg {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    min-height: 480px;
+    grid-template-rows: 64px minmax(0, 1fr) 74px;
+    border: 0;
+  }
+
+  .site-header {
+    padding: 9px 12px;
+    gap: 10px;
+  }
+
+  .site-brand {
+    gap: 8px;
+  }
+
+  .brand-symbol {
+    width: 38px;
+    height: 38px;
+  }
+
+  .site-brand h1 {
+    max-width: 202px;
+    overflow: hidden;
+    font-size: 17px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-brand p {
+    display: none;
+  }
+
+  .facility-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .facility-avatar svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .facility-area {
+    gap: 6px;
+  }
+
+  .facility-area > strong {
+    max-width: 82px;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+  }
+
+  .screen-stage {
+    padding: 12px 10px 18px;
+  }
+
+  .privacy-heading {
+    min-height: 90px;
+    padding: 12px;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .heading-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .heading-icon svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .privacy-heading h2,
+  .metadata-heading h2 {
+    font-size: 24px;
+  }
+
+  .privacy-summary {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .privacy-summary span {
+    min-width: 0;
+    min-height: 38px;
+    flex: 1;
+    grid-auto-flow: column;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  .privacy-summary strong {
+    font-size: 15px;
+  }
+
+  .privacy-toolbar label > span {
+    display: none;
+  }
+
+  .privacy-toolbar select {
+    max-width: 196px;
+  }
+
+  .patient-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .patient-card-body {
+    min-height: 0;
+    padding: 13px 14px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .privacy-mode-row strong {
+    min-width: 130px;
+    font-size: 10px;
+  }
+
+  .metadata-flow {
+    padding-top: 13px;
+    border-top: 1px solid #dce0e2;
+  }
+
+  .flow-ring {
+    width: 98px;
+    height: 98px;
+  }
+
+  .patient-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .event-heading {
+    min-height: 76px;
+    padding: 0 8px;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .event-heading-copy {
+    min-width: 0;
+  }
+
+  .event-heading h2 {
+    font-size: 34px;
+  }
+
+  .alarm-toggle {
+    width: 54px;
+    height: 54px;
+  }
+
+  .alarm-toggle svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .event-card {
+    min-height: 0;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+
+  .patient-photo-placeholder {
+    width: 52px;
+    height: 52px;
+    margin: 13px 8px;
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  .event-card-content {
+    padding: 10px 9px 9px 0;
+  }
+
+  .event-card-content > header {
+    min-height: 53px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .event-card time {
+    white-space: normal;
+  }
+
+  .event-fields {
+    padding: 7px 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 7px;
+  }
+
+  .risk-badge {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .event-actions {
+    flex-wrap: wrap;
+  }
+
+  .ack-state {
+    width: 100%;
+  }
+
+  .metadata-heading {
+    min-height: 86px;
+    padding: 4px 2px 14px;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .metadata-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .metadata-icon svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .metadata-table {
+    min-width: 0;
+    table-layout: auto;
+  }
+
+  .metadata-table thead {
+    display: none;
+  }
+
+  .metadata-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .metadata-table tr {
+    display: grid;
+    background: #fff;
+    border: 1px solid #b9bfc3;
+    border-radius: 5px;
+  }
+
+  .metadata-table td,
+  .metadata-table td:first-child {
+    min-height: 38px;
+    padding: 8px 10px;
+    display: grid;
+    grid-template-columns: minmax(126px, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #e0e3e5;
+    text-align: right;
+    font-size: 10px;
+  }
+
+  .metadata-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .metadata-table td::before {
+    content: attr(data-label);
+    color: #5f676d;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  .auto-log-toggle {
+    width: 86px;
+    height: 32px;
+    margin: 0 0 0 auto;
+  }
+
+  .auto-log-toggle i {
+    width: 24px;
+    height: 24px;
+  }
+
+  .auto-log-toggle.is-unsaved i {
+    transform: translateX(52px);
+  }
+
+  .bottom-nav {
+    padding: 7px 6px 8px;
+    gap: 5px;
+  }
+
+  .nav-button {
+    min-height: 58px;
+    padding: 4px;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .nav-button svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .nav-button span {
+    max-width: 100%;
+    line-height: 1.1;
+  }
+
+  .nav-count {
+    top: 3px;
+    right: 4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    font-size: 8px;
+  }
+
+  .toast {
+    right: 12px;
+    bottom: 84px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GitHub Pages judge demo: disclosure is in flow and never covers status. */
+.app-shell {
+  grid-template-rows: 42px 92px minmax(0, 1fr) 112px;
+}
+
+.candidate-review-banner {
+  position: relative;
+  top: auto;
+  left: auto;
+  max-width: none;
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #312200;
+  background: #ffe17a;
+  border: 0;
+  border-bottom: 1px solid #8c6509;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 12px;
+  line-height: 1.25;
+  transform: none;
+}
+
+.demo-toolbar {
+  width: min(1220px, 100%);
+  min-height: 72px;
+  margin: 0 auto 22px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  background: #eef6fb;
+  border: 1px solid #8dbbd8;
+  border-radius: 8px;
+}
+
+.demo-toolbar-copy {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.demo-toolbar-copy h2,
+.demo-toolbar-copy p {
+  margin: 0;
+}
+
+.demo-toolbar-copy h2 {
+  font-size: 17px;
+}
+
+.demo-toolbar-copy p {
+  margin-top: 3px;
+  color: #53616b;
+  font-size: 12px;
+}
+
+.demo-source-badge {
+  flex: 0 0 auto;
+  padding: 7px 9px;
+  color: #064d78;
+  background: #d7effc;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.demo-scene-control {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #53616b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.demo-scene-control select {
+  min-width: 210px;
+  min-height: 44px;
+  padding: 8px 34px 8px 12px;
+  color: #111418;
+  background: #fff;
+  border: 1px solid #7f8b93;
+  border-radius: 5px;
+}
+
+.demo-scene-buttons {
+  flex: 1 0 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.demo-scene-button {
+  min-width: 0;
+  min-height: 52px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  color: #26353f;
+  background: #fff;
+  border: 1px solid #9aa8b1;
+  border-left-width: 5px;
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.demo-scene-button span {
+  color: #5b6972;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.demo-scene-button b {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-scene-button.level-0 { border-left-color: #1f8f5f; }
+.demo-scene-button.level-1 { border-left-color: #d38a00; }
+.demo-scene-button.level-2 { border-left-color: #e06322; }
+.demo-scene-button.level-3 { border-left-color: #c83232; }
+.demo-scene-button.level-u { border-left-color: #657580; }
+
+.demo-scene-button:hover,
+.demo-scene-button:focus-visible {
+  border-color: #0879c5;
+  outline: 2px solid rgb(8 121 197 / 18%);
+  outline-offset: 1px;
+}
+
+.demo-scene-button.is-active {
+  color: #fff;
+  background: #075783;
+  border-color: #075783;
+  box-shadow: 0 0 0 3px rgb(8 121 197 / 18%);
+}
+
+.demo-scene-button.is-active span {
+  color: #d9f1ff;
+}
+
+.read-only-note {
+  margin: 10px 0 4px;
+  padding: 10px 12px;
+  color: #344b5a;
+  background: #eef6fb;
+  border-left: 4px solid #0879c5;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.metadata-only-placeholder {
+  color: #075783;
+  background: #eef8fd;
+  border-style: solid;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.outline-button,
+.confirm-button {
+  min-height: 44px;
+  padding: 8px 14px;
+  font-size: 12px;
+}
+
+.auto-log-toggle.is-demo {
+  width: 96px;
+  color: #fff;
+  background: #526875;
+  border-color: #526875;
+}
+
+.auto-log-toggle.is-demo i {
+  display: none;
+}
+
+.auto-log-toggle.is-demo b {
+  right: 50%;
+  transform: translate(50%, -50%);
+  white-space: nowrap;
+}
+
+.is-recorded .live-dot,
+.connection-state.is-recorded .live-dot {
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgb(8 121 197 / 12%);
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-rows: 42px 78px minmax(0, 1fr) 96px;
+  }
+
+  .connection-state {
+    display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    grid-template-rows: 52px 64px minmax(0, 1fr) 74px;
+  }
+
+  .candidate-review-banner {
+    min-height: 52px;
+    padding: 7px 12px;
+    font-size: 10px;
+  }
+
+  .site-header {
+    gap: 6px;
+  }
+
+  .site-brand h1 {
+    max-width: 154px;
+    font-size: 16px;
+  }
+
+  .facility-avatar,
+  .facility-area > strong {
+    display: none;
+  }
+
+  .facility-area {
+    min-width: 104px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .connection-state {
+    width: 100%;
+    margin-right: 0;
+    justify-content: flex-end;
+    font-size: 10px;
+    white-space: normal;
+    text-align: right;
+  }
+
+  .connection-state #connectionStatus {
+    max-width: 108px;
+  }
+
+  .screen-stage {
+    padding-top: 10px;
+  }
+
+  .demo-toolbar {
+    margin-bottom: 14px;
+    padding: 10px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .demo-toolbar-copy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .demo-toolbar-copy h2 {
+    font-size: 16px;
+  }
+
+  .demo-toolbar-copy p {
+    font-size: 11px;
+  }
+
+  .demo-source-badge {
+    font-size: 10px;
+  }
+
+  .demo-scene-control {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .demo-scene-control select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .demo-scene-buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .demo-scene-button {
+    min-height: 48px;
+  }
+
+  .event-fields span,
+  .status-chip,
+  .patient-photo-placeholder,
+  .patient-bed,
+  .flow-ring span,
+  .patient-card-footer {
+    font-size: 10px !important;
+  }
+
+  .event-card time,
+  .ack-state,
+  .metadata-table td,
+  .metadata-table td:first-child {
+    font-size: 11px;
+  }
+
+  .nav-button {
+    font-size: 11px;
+  }
+
+  .nav-count {
+    font-size: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div id="candidateReviewBanner" class="candidate-review-banner" role="status">
+      QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE
+    </div>
+
+    <header class="site-header">
+      <div class="site-brand">
+        <span class="brand-symbol" aria-hidden="true">
+          <img src="data:image/png;base64,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" alt="">
+        </span>
+        <div>
+          <h1>Privacy-Zero Safety Layer</h1>
+          <p>Metadata-only patient monitoring</p>
+        </div>
+      </div>
+
+      <div class="facility-area">
+        <div class="connection-state is-recorded">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="connectionStatus">기록 metadata 불러오는 중</span>
+        </div>
+        <span class="facility-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21a8 8 0 0 1 16 0"></path>
+          </svg>
+        </span>
+        <strong>심사용 데모</strong>
+      </div>
+    </header>
+
+    <main class="screen-stage">
+      <section class="demo-toolbar" aria-labelledby="demoToolbarTitle">
+        <div class="demo-toolbar-copy">
+          <span class="demo-source-badge">ACTUAL FPGA · RECORDED</span>
+          <div>
+            <h2 id="demoToolbarTitle">기록 상태 선택</h2>
+            <p id="demoSceneDescription">분류 입력과 분리된 UI 확인용 선택기입니다.</p>
+          </div>
+        </div>
+        <label class="demo-scene-control" for="demoSceneSelect">
+          <span>표시 상태</span>
+          <select id="demoSceneSelect" aria-describedby="demoSceneDescription"></select>
+        </label>
+        <div
+          id="demoSceneButtons"
+          class="demo-scene-buttons"
+          role="group"
+          aria-label="Level별 기록 화면 바로가기"
+        ></div>
+      </section>
+
+      <section id="privacyView" class="app-view privacy-view" aria-labelledby="privacyTitle">
+        <div class="privacy-heading">
+          <span class="heading-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path>
+              <rect x="9" y="10" width="6" height="6" rx="1"></rect>
+              <path d="M10.5 10V8.5a1.5 1.5 0 0 1 3 0V10"></path>
+            </svg>
+          </span>
+          <div>
+            <p>Patient Privacy</p>
+            <h2 id="privacyTitle">프라이버시 상태</h2>
+          </div>
+          <div class="privacy-summary">
+            <span><strong id="protectedCount">0</strong> 보호 중</span>
+            <span><strong id="privacyAlertCount">0</strong> 확인 필요</span>
+          </div>
+        </div>
+
+        <div class="privacy-toolbar">
+          <p><strong id="patientCount">0</strong>개 침상</p>
+          <label>
+            <span>정렬</span>
+            <select id="privacySort">
+              <option value="privacy">프라이버시 이상 우선</option>
+              <option value="risk">최근 위험 우선</option>
+              <option value="bed">침상 번호순</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="privacyList" class="privacy-list" aria-live="polite"></div>
+      </section>
+
+      <section id="eventsView" class="app-view events-view" aria-labelledby="eventsTitle" hidden>
+        <div class="event-heading">
+          <div class="event-heading-copy">
+            <h2 id="eventsTitle">이벤트 발생</h2>
+          </div>
+          <button id="alarmToggle" class="alarm-toggle" type="button" aria-pressed="false" title="경보음 끄기">
+            <svg class="bell-on" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M10.3 21h3.4"></path>
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+            </svg>
+            <svg class="bell-off" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m2 2 20 20"></path>
+              <path d="M10.3 21h3.4"></path>
+              <path d="M18 8a6 6 0 0 0-9.33-5"></path>
+              <path d="M6.26 6.26A6 6 0 0 0 6 8c0 7-3 7-3 9h14"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div id="alarmState" class="alarm-state">
+          <span class="alarm-state-dot" aria-hidden="true"></span>
+          <strong>경보음 켜짐</strong>
+          <span>이벤트 <b id="activeEventCount">0</b>건</span>
+        </div>
+
+        <div class="read-only-note">확인 버튼은 이 브라우저에서만 동작하는 시연용입니다. 서버 기록은 생성하지 않습니다.</div>
+        <div id="eventList" class="event-list" aria-live="polite"></div>
+      </section>
+
+      <section id="metadataView" class="app-view metadata-view" aria-labelledby="metadataTitle" hidden>
+        <div class="metadata-heading">
+          <span class="metadata-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path>
+              <path d="M14 2v6h6"></path>
+              <path d="M8 13h8M8 17h8M8 9h2"></path>
+              <path d="M1.5 6.5v13a2 2 0 0 0 2 2"></path>
+            </svg>
+          </span>
+          <div>
+            <p>Recorded metadata · Read only</p>
+            <h2 id="metadataTitle">Metadata / Audit Log</h2>
+          </div>
+        </div>
+
+        <section id="metadataAIShadowPanel" class="metadata-ai-shadow" aria-labelledby="metadataAIShadowTitle" hidden>
+          <div class="metadata-ai-shadow-title">
+            <span class="shadow-badge">SHADOW MODE</span>
+            <div>
+              <p>Metadata AI · 개발/심사 확인용</p>
+              <h3 id="metadataAIShadowTitle">기존 FSM 판단과 분리됨</h3>
+            </div>
+          </div>
+          <dl>
+            <div><dt>Model</dt><dd id="metadataAIModel">NOT TRAINED</dd></div>
+            <div><dt>Feature Schema</dt><dd id="metadataAIFeatureSchema">META_FEATURE_SCHEMA_V1</dd></div>
+            <div><dt>AI Fall-like Score</dt><dd id="metadataAIScore">N/A</dd></div>
+            <div><dt>FSM Decision Source</dt><dd id="metadataAIFSMSource">EXISTING RULE FSM</dd></div>
+            <div><dt>FSM Control</dt><dd id="metadataAIFSMControl">NOT CONNECTED</dd></div>
+          </dl>
+        </section>
+
+        <div class="metadata-table-wrap">
+          <table class="metadata-table">
+            <caption>침상별 기록 metadata 및 정적 데모 저장 상태</caption>
+            <thead>
+              <tr>
+                <th scope="col">Recorded Time</th>
+                <th scope="col">Bed</th>
+                <th scope="col">Motion_count</th>
+                <th scope="col">ROI Counts</th>
+                <th scope="col">Current / Display</th>
+                <th scope="col">Observed / Committed</th>
+                <th scope="col">Tracking / Source</th>
+                <th scope="col">Low_horizontal_hint</th>
+                <th scope="col">No-motion duration</th>
+                <th scope="col">기록 샘플 속도</th>
+                <th scope="col">이벤트-알림 지연시간</th>
+                <th scope="col">Public demo</th>
+              </tr>
+            </thead>
+            <tbody id="metadataTableBody"></tbody>
+          </table>
+          <div id="metadataEmpty" class="metadata-empty" hidden>표시할 metadata가 없습니다.</div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="주요 화면">
+      <button class="nav-button is-active" type="button" data-view="privacy" aria-selected="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path>
+          <rect x="9" y="10" width="6" height="6" rx="1"></rect>
+          <path d="M10.5 10V8.5a1.5 1.5 0 0 1 3 0V10"></path>
+        </svg>
+        <span>프라이버시 상태</span>
+      </button>
+      <button class="nav-button" type="button" data-view="events" aria-selected="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M10.3 21h3.4"></path>
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+        </svg>
+        <span>이벤트 발생</span>
+        <b id="eventTabCount" class="nav-count">0</b>
+      </button>
+      <button class="nav-button" type="button" data-view="metadata" aria-selected="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path>
+          <path d="M14 2v6h6"></path>
+          <path d="M8 13h8M8 17h8M8 9h2"></path>
+        </svg>
+        <span>Metadata / Audit Log</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    window.__PRIVACYZERO_STANDALONE__ = true;
+    window.__PRIVACYZERO_DEMO_DATA__ = {"schema_version":"PRIVACYZERO_PUBLIC_JUDGE_DEMO_V1","mode":"RECORDED_READ_ONLY_DEMO","default_scene":"normal","disclosure":{"live":false,"writable":false,"contains_raw_media":false,"contains_personal_data":false,"classifier_status":"CANDIDATE_NOT_FROZEN","blind_result":"NOT_CLAIMED"},"provenance":{"run_id":"E2E-20260806-152248-4968f54f","hardware_claim":"ACTUAL_FPGA","fpga_responses":330,"fpga_golden_matches":330,"uart_timeouts":0,"protocol_errors":0,"claim_scope":"PRESENTATION_CANDIDATE_RECORDED_RUN_NOT_BLIND"},"scenes":[{"id":"normal","label":"정상 모니터링","description":"침상 내부의 기록 metadata 화면","source_health":{"state":"RECORDED","message":"기록 metadata · 라이브 연결 아님","source_issue":false},"profile1_fsm":{"enabled":true,"status":"CANDIDATE_REVIEW_NOT_FROZEN","profile_id":"PROFILE2_PRESENTATION_CANDIDATE","label":"QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE"},"metadata_ai":{"ai_mode":"SHADOW","ai_available":false,"ai_status":"FEATURE_UNAVAILABLE","model_status":"READY_SHADOW_ONLY","model_id":"METAFALL_MLP8_SHADOW_20260804","feature_schema":"META_FEATURE_SCHEMA_V1","fall_like_score":null,"predicted_class":null,"fsm_control":"NOT_CONNECTED","fsm_decision_source":"EXISTING_RULE_FSM"},"metadata_source":"RECORDED_ACTUAL_FPGA","metadata_rows":1,"generated_at":"2026-08-06T15:22:48+09:00","beds":[{"timestamp":"2026-08-06T15:22:49+09:00","stream_id":"PUBLIC-DEMO-BED01","source_session_id":"PUBLIC-RECORDED-DEMO-20260806","source_timestamp_ms":1400,"source_frame_id":7,"source_stage":"fpga_board_uart_v1_1","protocol_version":"1.1","bed_id":"BED-01","event_id":"DEMO-NORMAL-0007","event_type":"NORMAL","risk_level":"0","current_level":"0","display_level":"0","current_state":"BED_NORMAL","status_label":"정상 모니터링","meaning":"정상 모니터링","operator_action":"demo_review_only","reason_codes":["BED_ROI_MOTION_CONFIRMED"],"motion_count":78,"bbox":[19,27,40,47],"center":[29,37],"wide_shape_hint":false,"low_horizontal_hint":false,"bed_count":78,"exit_count":9,"floor_count":0,"roi_profile_id":2,"valid_flag":true,"reported_valid_flag":true,"source_issue":false,"source_state":"CONNECTED","source_status":"OK","tracking_status":"TRACKING","observed_zone":"BED","committed_zone":"BED","transition_phase":"STABLE","bed_exit_active":false,"bed_exit_episode_id":null,"bed_exit_status":"NONE","incident_id":null,"incident_status":"NONE","bed_roi_state":"IN_BED","floor_risk_zone":false,"no_motion_duration_s":0.0,"changed_pixel_count":78,"raw_displayed":false,"raw_saved_by_app":false,"raw_transmitted_by_app":false,"privacy_mode":"METADATA_ONLY","metadata_contract":"PI_ENRICHED_METADATA_V1_1","updated_seconds_ago":0.0,"metadata_refresh_hz_observed":5.0,"event_alert_latency_s_observed":null,"acknowledgement":{"state":"UNCONFIRMED","label":"시연 대기","operator":null,"timestamp":null},"state_history":[{"seconds_ago":0.0,"event_type":"NORMAL","risk_level":"0"}],"auto_log_saved":null,"recorded_demo":true,"hardware_executed":true,"metadata_source":"ACTUAL_FPGA"}]},{"id":"edge","label":"가장자리 접근","description":"Exit Zone 접근 기록 화면","source_health":{"state":"RECORDED","message":"기록 metadata · 라이브 연결 아님","source_issue":false},"profile1_fsm":{"enabled":true,"status":"CANDIDATE_REVIEW_NOT_FROZEN","profile_id":"PROFILE2_PRESENTATION_CANDIDATE","label":"QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE"},"metadata_ai":{"ai_mode":"SHADOW","ai_available":true,"ai_status":"SCORE_AVAILABLE_SHADOW_ONLY","model_status":"READY_SHADOW_ONLY","model_id":"METAFALL_MLP8_SHADOW_20260804","feature_schema":"META_FEATURE_SCHEMA_V1","fall_like_score":1e-06,"predicted_class":"NON_FALL_LIKE","fsm_control":"NOT_CONNECTED","fsm_decision_source":"EXISTING_RULE_FSM"},"metadata_source":"RECORDED_ACTUAL_FPGA","metadata_rows":1,"generated_at":"2026-08-06T15:22:48+09:00","beds":[{"timestamp":"2026-08-06T15:22:51+09:00","stream_id":"PUBLIC-DEMO-BED01","source_session_id":"PUBLIC-RECORDED-DEMO-20260806","source_timestamp_ms":3201,"source_frame_id":16,"source_stage":"fpga_board_uart_v1_1","protocol_version":"1.1","bed_id":"BED-01","event_id":"DEMO-EDGE-0016","event_type":"EDGE_APPROACH","risk_level":"1","current_level":"1","display_level":"1","current_state":"EDGE_APPROACH","status_label":"침상 가장자리 접근","meaning":"침상 가장자리 접근","operator_action":"demo_review_only","reason_codes":["EXIT_ZONE_MOTION_CONFIRMED"],"motion_count":338,"bbox":[11,16,45,37],"center":[28,26],"wide_shape_hint":false,"low_horizontal_hint":false,"bed_count":325,"exit_count":53,"floor_count":24,"roi_profile_id":2,"valid_flag":true,"reported_valid_flag":true,"source_issue":false,"source_state":"CONNECTED","source_status":"OK","tracking_status":"TRACKING","observed_zone":"EXIT","committed_zone":"EXIT","transition_phase":"OUTWARD","bed_exit_active":false,"bed_exit_episode_id":null,"bed_exit_status":"NONE","incident_id":null,"incident_status":"NONE","bed_roi_state":"NEAR_EDGE","floor_risk_zone":false,"no_motion_duration_s":0.0,"changed_pixel_count":338,"raw_displayed":false,"raw_saved_by_app":false,"raw_transmitted_by_app":false,"privacy_mode":"METADATA_ONLY","metadata_contract":"PI_ENRICHED_METADATA_V1_1","updated_seconds_ago":0.0,"metadata_refresh_hz_observed":5.0,"event_alert_latency_s_observed":null,"acknowledgement":{"state":"UNCONFIRMED","label":"시연 대기","operator":null,"timestamp":null},"state_history":[{"seconds_ago":0.0,"event_type":"EDGE_APPROACH","risk_level":"1"}],"auto_log_saved":null,"recorded_demo":true,"hardware_executed":true,"metadata_source":"ACTUAL_FPGA"}]},{"id":"exit","label":"침상 이탈","description":"Floor Zone 진입 기록 화면","source_health":{"state":"RECORDED","message":"기록 metadata · 라이브 연결 아님","source_issue":false},"profile1_fsm":{"enabled":true,"status":"CANDIDATE_REVIEW_NOT_FROZEN","profile_id":"PROFILE2_PRESENTATION_CANDIDATE","label":"QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE"},"metadata_ai":{"ai_mode":"SHADOW","ai_available":true,"ai_status":"SCORE_AVAILABLE_SHADOW_ONLY","model_status":"READY_SHADOW_ONLY","model_id":"METAFALL_MLP8_SHADOW_20260804","feature_schema":"META_FEATURE_SCHEMA_V1","fall_like_score":0.00262,"predicted_class":"NON_FALL_LIKE","fsm_control":"NOT_CONNECTED","fsm_decision_source":"EXISTING_RULE_FSM"},"metadata_source":"RECORDED_ACTUAL_FPGA","metadata_rows":1,"generated_at":"2026-08-06T15:22:48+09:00","beds":[{"timestamp":"2026-08-06T15:22:52+09:00","stream_id":"PUBLIC-DEMO-BED01","source_session_id":"PUBLIC-RECORDED-DEMO-20260806","source_timestamp_ms":4801,"source_frame_id":24,"source_stage":"fpga_board_uart_v1_1","protocol_version":"1.1","bed_id":"BED-01","event_id":"DEMO-EXIT-0024","event_type":"BED_EXIT","risk_level":"2","current_level":"2","display_level":"2","current_state":"FLOOR_CONFIRMED","status_label":"침상 이탈 확인","meaning":"침상 이탈 확인","operator_action":"demo_review_only","reason_codes":["FLOOR_SEQUENCE_CANDIDATE"],"motion_count":267,"bbox":[29,11,58,36],"center":[43,23],"wide_shape_hint":false,"low_horizontal_hint":false,"bed_count":108,"exit_count":122,"floor_count":176,"roi_profile_id":2,"valid_flag":true,"reported_valid_flag":true,"source_issue":false,"source_state":"CONNECTED","source_status":"OK","tracking_status":"TRACKING","observed_zone":"FLOOR","committed_zone":"FLOOR","transition_phase":"OUTSIDE","bed_exit_active":true,"bed_exit_episode_id":"P1-L2:4801","bed_exit_status":"ACTIVE","incident_id":null,"incident_status":"NONE","bed_roi_state":"OUT_OF_BED","floor_risk_zone":true,"no_motion_duration_s":0.0,"changed_pixel_count":267,"raw_displayed":false,"raw_saved_by_app":false,"raw_transmitted_by_app":false,"privacy_mode":"METADATA_ONLY","metadata_contract":"PI_ENRICHED_METADATA_V1_1","updated_seconds_ago":0.0,"metadata_refresh_hz_observed":5.0,"event_alert_latency_s_observed":null,"acknowledgement":{"state":"UNCONFIRMED","label":"시연 대기","operator":null,"timestamp":null},"state_history":[{"seconds_ago":0.0,"event_type":"BED_EXIT","risk_level":"2"}],"auto_log_saved":null,"recorded_demo":true,"hardware_executed":true,"metadata_source":"ACTUAL_FPGA"}]},{"id":"fall","label":"Level 3 후보","description":"후보 Profile에서 생성된 실제 FPGA 기록 화면","source_health":{"state":"RECORDED","message":"기록 metadata · 라이브 연결 아님","source_issue":false},"profile1_fsm":{"enabled":true,"status":"CANDIDATE_REVIEW_NOT_FROZEN","profile_id":"PROFILE2_PRESENTATION_CANDIDATE","label":"QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE"},"metadata_ai":{"ai_mode":"SHADOW","ai_available":true,"ai_status":"SCORE_AVAILABLE_SHADOW_ONLY","model_status":"READY_SHADOW_ONLY","model_id":"METAFALL_MLP8_SHADOW_20260804","feature_schema":"META_FEATURE_SCHEMA_V1","fall_like_score":0.504993,"predicted_class":"NON_FALL_LIKE","fsm_control":"NOT_CONNECTED","fsm_decision_source":"EXISTING_RULE_FSM"},"metadata_source":"RECORDED_ACTUAL_FPGA","metadata_rows":1,"generated_at":"2026-08-06T15:22:48+09:00","beds":[{"timestamp":"2026-08-06T15:23:46+09:00","stream_id":"PUBLIC-DEMO-BED01","source_session_id":"PUBLIC-RECORDED-DEMO-20260806","source_timestamp_ms":58413,"source_frame_id":292,"source_stage":"fpga_board_uart_v1_1","protocol_version":"1.1","bed_id":"BED-01","event_id":"DEMO-FALL-0292","event_type":"FALL_LIKE","risk_level":"3","current_level":"3","display_level":"3","current_state":"FALL_LIKE_CHECK_REQUIRED","status_label":"즉시 확인 필요","meaning":"즉시 확인 필요","operator_action":"demo_review_only","reason_codes":["PRESENTATION_RELAXED_RECENT_EXIT_TO_STRONG_FLOOR"],"motion_count":376,"bbox":[28,19,53,47],"center":[40,33],"wide_shape_hint":false,"low_horizontal_hint":false,"bed_count":261,"exit_count":246,"floor_count":166,"roi_profile_id":2,"valid_flag":true,"reported_valid_flag":true,"source_issue":false,"source_state":"CONNECTED","source_status":"OK","tracking_status":"TRACKING","observed_zone":"FLOOR","committed_zone":"FLOOR","transition_phase":"OUTSIDE","bed_exit_active":true,"bed_exit_episode_id":"P1-L2:58413","bed_exit_status":"ACTIVE","incident_id":"BED-UNKNOWN:292:58413","incident_status":"OPEN_UNACKNOWLEDGED","bed_roi_state":"OUT_OF_BED","floor_risk_zone":true,"no_motion_duration_s":0.0,"changed_pixel_count":376,"raw_displayed":false,"raw_saved_by_app":false,"raw_transmitted_by_app":false,"privacy_mode":"METADATA_ONLY","metadata_contract":"PI_ENRICHED_METADATA_V1_1","updated_seconds_ago":0.0,"metadata_refresh_hz_observed":5.0,"event_alert_latency_s_observed":null,"acknowledgement":{"state":"OPEN_UNACKNOWLEDGED","label":"미확인","operator":null,"timestamp":null},"state_history":[{"seconds_ago":0.0,"event_type":"FALL_LIKE","risk_level":"3"}],"auto_log_saved":null,"recorded_demo":true,"hardware_executed":true,"metadata_source":"ACTUAL_FPGA"}]},{"id":"source-check","label":"소스 확인 필요","description":"정렬 검증 실패를 Level U로 처리한 기록 화면","source_health":{"state":"DEGRADED","message":"기록된 소스 이상 프레임","source_issue":true},"profile1_fsm":{"enabled":true,"status":"CANDIDATE_REVIEW_NOT_FROZEN","profile_id":"PROFILE2_PRESENTATION_CANDIDATE","label":"QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE"},"metadata_ai":{"ai_mode":"SHADOW","ai_available":false,"ai_status":"FEATURE_UNAVAILABLE","model_status":"READY_SHADOW_ONLY","model_id":"METAFALL_MLP8_SHADOW_20260804","feature_schema":"META_FEATURE_SCHEMA_V1","fall_like_score":null,"predicted_class":null,"fsm_control":"NOT_CONNECTED","fsm_decision_source":"EXISTING_RULE_FSM"},"metadata_source":"RECORDED_ACTUAL_FPGA","metadata_rows":1,"generated_at":"2026-08-06T15:22:48+09:00","beds":[{"timestamp":"2026-08-06T15:24:11+09:00","stream_id":"PUBLIC-DEMO-BED01","source_session_id":"PUBLIC-RECORDED-DEMO-20260806","source_timestamp_ms":83403,"source_frame_id":317,"source_stage":"fpga_board_uart_v1_1","protocol_version":"1.1","bed_id":"BED-01","event_id":"DEMO-SOURCE-CHECK-0317","event_type":"CHECK_REQUIRED","risk_level":"U","current_level":"U","display_level":"U","current_state":"SOURCE_UNAVAILABLE","status_label":"센서 상태 확인","meaning":"센서 상태 확인","operator_action":"demo_review_only","reason_codes":["RISK_INPUT_NOT_ALLOWED"],"motion_count":0,"bbox":[-1,-1,-1,-1],"center":[-1,-1],"wide_shape_hint":false,"low_horizontal_hint":false,"bed_count":0,"exit_count":0,"floor_count":0,"roi_profile_id":2,"valid_flag":false,"reported_valid_flag":false,"source_issue":true,"source_state":"DEGRADED","source_status":"DEGRADED","tracking_status":"STALE","observed_zone":"NONE","committed_zone":"EXIT","transition_phase":"OUTWARD","bed_exit_active":false,"bed_exit_episode_id":null,"bed_exit_status":"NONE","incident_id":null,"incident_status":"NONE","bed_roi_state":"NEAR_EDGE","floor_risk_zone":false,"no_motion_duration_s":0.0,"changed_pixel_count":0,"raw_displayed":false,"raw_saved_by_app":false,"raw_transmitted_by_app":false,"privacy_mode":"METADATA_ONLY","metadata_contract":"PI_ENRICHED_METADATA_V1_1","updated_seconds_ago":0.0,"metadata_refresh_hz_observed":5.0,"event_alert_latency_s_observed":null,"acknowledgement":{"state":"UNCONFIRMED","label":"시연 대기","operator":null,"timestamp":null},"state_history":[{"seconds_ago":0.0,"event_type":"CHECK_REQUIRED","risk_level":"U"}],"auto_log_saved":null,"recorded_demo":true,"hardware_executed":true,"metadata_source":"ACTUAL_FPGA"}]}]};
+  </script>
+  <script>
+const VIEWS = ["privacy", "events", "metadata"];
+const DATA_URL = "./data/demo-snapshots.json";
+const EMBEDDED_DEMO_DATA = window.__PRIVACYZERO_DEMO_DATA__ || null;
+
+const riskPriority = { "3": 0, "2": 1, U: 2, "1": 3, "0": 4 };
+const riskLabels = {
+  "3": "즉시 확인 필요",
+  "2": "침대 밖 이동",
+  U: "센서 상태 확인",
+  "1": "침대 경계 접근",
+  "0": "정상",
+};
+
+const urlState = new URLSearchParams(window.location.search);
+const requestedView = urlState.get("view");
+const compactMode = urlState.get("compact") === "1";
+
+document.documentElement.classList.toggle("compact-mode", compactMode);
+
+const state = {
+  beds: [],
+  sourceHealth: null,
+  profile1Status: null,
+  metadataAI: null,
+  demoData: null,
+  activeSceneId: null,
+  polling: false,
+  view: VIEWS.includes(requestedView)
+    ? requestedView
+    : "privacy",
+  privacySort: localStorage.getItem("privacyZeroSort") || "privacy",
+  alarmMuted: urlState.has("muted")
+    ? urlState.get("muted") === "1"
+    : localStorage.getItem("privacyZeroAlarmMuted") === "true",
+};
+
+if (!VIEWS.includes(state.view)) state.view = "privacy";
+
+const elements = {
+  connectionStatus: document.querySelector("#connectionStatus"),
+  candidateReviewBanner: document.querySelector("#candidateReviewBanner"),
+  navButtons: document.querySelectorAll(".nav-button"),
+  privacyView: document.querySelector("#privacyView"),
+  eventsView: document.querySelector("#eventsView"),
+  eventsTitle: document.querySelector("#eventsTitle"),
+  metadataView: document.querySelector("#metadataView"),
+  eventTabCount: document.querySelector("#eventTabCount"),
+  patientCount: document.querySelector("#patientCount"),
+  protectedCount: document.querySelector("#protectedCount"),
+  privacyAlertCount: document.querySelector("#privacyAlertCount"),
+  privacySort: document.querySelector("#privacySort"),
+  privacyList: document.querySelector("#privacyList"),
+  alarmToggle: document.querySelector("#alarmToggle"),
+  alarmState: document.querySelector("#alarmState"),
+  activeEventCount: document.querySelector("#activeEventCount"),
+  eventList: document.querySelector("#eventList"),
+  metadataTableBody: document.querySelector("#metadataTableBody"),
+  metadataEmpty: document.querySelector("#metadataEmpty"),
+  metadataAIShadowPanel: document.querySelector("#metadataAIShadowPanel"),
+  metadataAIModel: document.querySelector("#metadataAIModel"),
+  metadataAIFeatureSchema: document.querySelector("#metadataAIFeatureSchema"),
+  metadataAIScore: document.querySelector("#metadataAIScore"),
+  metadataAIFSMSource: document.querySelector("#metadataAIFSMSource"),
+  metadataAIFSMControl: document.querySelector("#metadataAIFSMControl"),
+  demoSceneSelect: document.querySelector("#demoSceneSelect"),
+  demoSceneButtons: document.querySelector("#demoSceneButtons"),
+  demoSceneDescription: document.querySelector("#demoSceneDescription"),
+  toast: document.querySelector("#toast"),
+};
+
+if (compactMode) elements.eventsTitle.textContent = "현재 상태";
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function secondsAgo(value) {
+  if (value === null || value === undefined || value === "") return "측정 불가";
+  const seconds = Number(value);
+  if (!Number.isFinite(seconds)) return "측정 불가";
+  if (seconds < 1) return "방금 전";
+  if (seconds < 60) return `${seconds}초 전`;
+  return `${Math.floor(seconds / 60)}분 전`;
+}
+
+function measuredRate(value) {
+  const rate = Number(value);
+  return Number.isFinite(rate) && rate > 0 ? `${rate.toFixed(1)} Hz` : "측정 불가";
+}
+
+function measuredLatency(value) {
+  if (value === null || value === undefined || value === "") return "측정 불가";
+  const latency = Number(value);
+  return Number.isFinite(latency) && latency >= 0
+    ? `${latency.toFixed(2)}초`
+    : "측정 불가";
+}
+
+function formatTimestamp(bed, includeSeconds = true) {
+  const sourceEpochMs = Number(bed.source_timestamp_ms);
+  const timestamp =
+    bed.timestamp ||
+    (Number.isFinite(sourceEpochMs) && sourceEpochMs >= 1_000_000_000_000
+      ? new Date(sourceEpochMs).toISOString()
+      : null);
+  if (timestamp) {
+    const parsed = new Date(timestamp);
+    if (!Number.isNaN(parsed.getTime())) {
+      return new Intl.DateTimeFormat("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: includeSeconds ? "2-digit" : undefined,
+        hour12: false,
+      }).format(parsed);
+    }
+  }
+  return `frame ${bed.source_frame_id}`;
+}
+
+function hasPrivacyIssue(bed) {
+  return Boolean(
+    bed.raw_displayed ||
+    bed.raw_saved_by_app ||
+    bed.raw_transmitted_by_app ||
+    bed.privacy_mode !== "METADATA_ONLY",
+  );
+}
+
+function privacyToggle(label, value) {
+  const displayValue = value ? "true" : "false";
+  return `
+    <div class="privacy-row">
+      <span>${escapeHtml(label)}</span>
+      <span class="privacy-toggle is-${displayValue}" role="img" aria-label="${escapeHtml(label)} ${displayValue}">
+        <i aria-hidden="true"></i>
+        <b>${displayValue}</b>
+      </span>
+    </div>
+  `;
+}
+
+function autoLogToggle(saved) {
+  if (saved === null || saved === undefined) {
+    return `
+      <span class="auto-log-toggle is-demo" role="img" aria-label="Public demo read only">
+        <i aria-hidden="true"></i>
+        <b>read only</b>
+      </span>
+    `;
+  }
+  const value = saved ? "saved" : "unsaved";
+  return `
+    <span class="auto-log-toggle is-${value}" role="img" aria-label="Auto log ${value}">
+      <i aria-hidden="true"></i>
+      <b>${value}</b>
+    </span>
+  `;
+}
+
+function statusTone(value) {
+  const normalized = String(value || "UNKNOWN").toLowerCase();
+  return normalized.replace(/[^a-z0-9_-]/g, "-");
+}
+
+function statusChip(label, value) {
+  return `<span class="status-chip status-${statusTone(value)}"><b>${escapeHtml(label)}</b>${escapeHtml(value ?? "-")}</span>`;
+}
+
+function displayRiskLabel(bed) {
+  if (bed.current_state === "INITIALIZING") return "초기화 중 · 최초 위치 증거 대기";
+  if (bed.tracking_status === "FLOOR_EVIDENCE_STALE") return "Floor 증거 오래됨 · 확인 유지";
+  if (bed.source_status && bed.source_status !== "OK" && String(bed.display_level) === "2") {
+    return "침상 이탈 표시 유지 · 소스 확인";
+  }
+  if (bed.source_status && bed.source_status !== "OK" && String(bed.display_level) === "3") {
+    return "긴급 경고 유지 · 소스 확인";
+  }
+  return riskLabels[bed.risk_level] || bed.status_label;
+}
+
+function sortedPrivacyBeds() {
+  const beds = [...state.beds];
+  if (state.privacySort === "bed") {
+    return beds.sort((a, b) =>
+      a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
+    );
+  }
+  if (state.privacySort === "risk") {
+    return beds.sort(
+      (a, b) =>
+        (riskPriority[a.risk_level] ?? 99) - (riskPriority[b.risk_level] ?? 99) ||
+        a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
+    );
+  }
+  return beds.sort(
+    (a, b) =>
+      Number(hasPrivacyIssue(b)) - Number(hasPrivacyIssue(a)) ||
+      (riskPriority[a.risk_level] ?? 99) - (riskPriority[b.risk_level] ?? 99) ||
+      a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
+  );
+}
+
+function renderPrivacy() {
+  const beds = sortedPrivacyBeds();
+  const issueCount = beds.filter(hasPrivacyIssue).length;
+  elements.patientCount.textContent = String(beds.length);
+  elements.protectedCount.textContent = String(beds.length - issueCount);
+  elements.privacyAlertCount.textContent = String(issueCount);
+
+  if (!beds.length) {
+    elements.privacyList.innerHTML =
+      '<div class="empty-state">연결된 침상이 없습니다.</div>';
+    return;
+  }
+
+  elements.privacyList.innerHTML = beds
+    .map((bed) => {
+      const issue = hasPrivacyIssue(bed);
+      const observedRate = Number(bed.metadata_refresh_hz_observed);
+      const hasObservedRate = Number.isFinite(observedRate) && observedRate > 0;
+      const flow = hasObservedRate
+        ? Math.min(100, (observedRate / 5) * 100)
+        : 0;
+      const flowLabel = hasObservedRate ? `${observedRate.toFixed(1)} Hz` : "기록 없음";
+      return `
+        <article class="patient-card${issue ? " has-privacy-issue" : ""}${bed.source_issue ? " has-source-issue" : ""}">
+          <header class="patient-card-header">
+            <div>
+              <span class="patient-bed">${escapeHtml(bed.bed_id)}</span>
+              <h3>${escapeHtml(bed.bed_id)} 침상</h3>
+            </div>
+            <span class="privacy-result">
+              <i aria-hidden="true"></i>
+              ${issue
+                ? "프라이버시 확인 필요"
+                : bed.source_issue
+                  ? "프라이버시 보호 · 소스 확인"
+                  : "프라이버시 보호 중"}
+            </span>
+          </header>
+
+          <div class="patient-card-body">
+            <div class="privacy-controls">
+              <div class="privacy-mode-row">
+                <span>Privacy Mode</span>
+                <strong>${escapeHtml(bed.privacy_mode)}</strong>
+              </div>
+              ${privacyToggle("Raw 표시 여부", bed.raw_displayed)}
+              ${privacyToggle("Raw 저장 여부", bed.raw_saved_by_app)}
+              ${privacyToggle("Raw 전송 여부", bed.raw_transmitted_by_app)}
+            </div>
+
+            <div class="metadata-flow">
+              <div class="flow-ring" style="--flow: ${flow}">
+                <div>
+                  <strong>${flowLabel}</strong>
+                  <span>기록 샘플</span>
+                </div>
+              </div>
+              <p>기록 metadata</p>
+            </div>
+          </div>
+
+          <footer class="patient-card-footer">
+            <span>기록 프레임 ${escapeHtml(bed.source_frame_id)}</span>
+            <span>Display Level ${escapeHtml(bed.display_level ?? bed.risk_level)} · Current ${escapeHtml(bed.current_level ?? bed.risk_level)}</span>
+          </footer>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function actionButtons(bed) {
+  const ackState = bed.acknowledgement?.state || "UNCONFIRMED";
+  const incidentId = bed.incident_id || "";
+  const startDisabled =
+    !incidentId || ackState !== "OPEN_UNACKNOWLEDGED" ? " disabled" : "";
+  const completeDisabled =
+    !incidentId || ["ACKNOWLEDGED_MONITORING", "CLOSED"].includes(ackState)
+      ? " disabled"
+      : "";
+  const ackLabel = incidentId
+    ? bed.acknowledgement?.label || "미확인"
+    : "대기";
+  return `
+    <div class="event-actions">
+      <span class="ack-state ack-${escapeHtml(ackState)}">${escapeHtml(ackLabel)}</span>
+      <button type="button" class="outline-button" data-bed-id="${escapeHtml(bed.bed_id)}" data-incident-id="${escapeHtml(incidentId)}" data-action="STARTED"${startDisabled}>확인 시작</button>
+      <button type="button" class="confirm-button" data-bed-id="${escapeHtml(bed.bed_id)}" data-incident-id="${escapeHtml(incidentId)}" data-action="COMPLETED"${completeDisabled}>확인 완료</button>
+    </div>
+  `;
+}
+
+function compactZoneLabel(value) {
+  const zone = String(value || "NONE").toUpperCase();
+  return ["BED", "EXIT", "FLOOR"].includes(zone) ? `${zone} ZONE` : "NONE";
+}
+
+function compactSourceLabel(bed) {
+  return bed.source_status === "OK" && bed.tracking_status === "TRACKING"
+    ? "OK"
+    : "CHECK";
+}
+
+function compactEventCard(bed) {
+  return `
+    <article class="event-card compact-event-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+      <div class="event-card-content">
+        <header>
+          <div>
+            <span class="patient-bed">침상</span>
+            <h3>${escapeHtml(bed.bed_id)}</h3>
+          </div>
+          <time>${escapeHtml(formatTimestamp(bed))}</time>
+        </header>
+        <div class="compact-status-grid">
+          <div>
+            <span>Risk Level</span>
+            <strong class="compact-level level-${escapeHtml(String(bed.display_level ?? bed.risk_level).toLowerCase())}">Level ${escapeHtml(bed.display_level ?? bed.risk_level)}</strong>
+          </div>
+          <div><span>Observed Zone</span><strong>${escapeHtml(compactZoneLabel(bed.observed_zone))}</strong></div>
+          <div><span>Committed Zone</span><strong>${escapeHtml(compactZoneLabel(bed.committed_zone))}</strong></div>
+          <div><span>Source</span><strong>${escapeHtml(compactSourceLabel(bed))}</strong></div>
+        </div>
+        ${actionButtons(bed)}
+      </div>
+    </article>
+  `;
+}
+
+function renderEvents() {
+  const alerts = state.beds.filter((bed) => String(bed.risk_level) !== "0");
+  const events = [...(compactMode ? state.beds : alerts)]
+    .sort(
+      (a, b) =>
+        Number(a.acknowledgement?.state === "CLOSED") -
+          Number(b.acknowledgement?.state === "CLOSED") ||
+        (riskPriority[a.risk_level] ?? 99) - (riskPriority[b.risk_level] ?? 99) ||
+        a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
+    );
+
+  elements.eventTabCount.textContent = String(alerts.length);
+  elements.activeEventCount.textContent = String(alerts.length);
+  elements.eventTabCount.hidden = alerts.length === 0;
+
+  if (!events.length) {
+    elements.eventList.innerHTML = `
+      <div class="empty-state event-empty">
+        <strong>현재 발생한 이벤트가 없습니다.</strong>
+        <span>모든 침상이 정상 상태입니다.</span>
+      </div>
+    `;
+    return;
+  }
+
+  if (compactMode) {
+    elements.eventList.innerHTML = events.map(compactEventCard).join("");
+    return;
+  }
+
+  elements.eventList.innerHTML = events
+    .map(
+      (bed) => `
+        <article class="event-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+          <div class="patient-photo-placeholder metadata-only-placeholder" role="img" aria-label="원본 영상 비표시">
+            <span>RAW<br>OFF</span>
+          </div>
+          <div class="event-card-content">
+            <header>
+              <div>
+                <span class="patient-bed">${escapeHtml(bed.bed_id)}</span>
+                <h3>${escapeHtml(bed.bed_id)} 침상</h3>
+              </div>
+              <time>${escapeHtml(formatTimestamp(bed))}</time>
+            </header>
+
+            <div class="event-fields">
+              <div>
+                <span>Event Type</span>
+                <strong>${escapeHtml(bed.event_type)}</strong>
+              </div>
+              <div>
+                <span>Risk Level</span>
+                <strong class="risk-badge risk-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+                  Level ${escapeHtml(bed.risk_level)}
+                  <small>${escapeHtml(displayRiskLabel(bed))}</small>
+                </strong>
+              </div>
+              <div>
+                <span>Current / Display</span>
+                <strong>${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</strong>
+              </div>
+              <div>
+                <span>Observed / Committed Zone</span>
+                <strong>${escapeHtml(bed.observed_zone ?? "-")} / ${escapeHtml(bed.committed_zone ?? "-")}</strong>
+              </div>
+              <div>
+                <span>Transition</span>
+                <strong>${escapeHtml(bed.transition_phase ?? "-")}</strong>
+              </div>
+              <div>
+                <span>Tracking / Source</span>
+                <strong class="status-pair">${statusChip("Tracking", bed.tracking_status)} ${statusChip("Source", bed.source_status)}</strong>
+              </div>
+              <div>
+                <span>Bed-exit Episode</span>
+                <strong>${escapeHtml(bed.bed_exit_status ?? "NONE")}${bed.bed_exit_active ? " · ACTIVE" : ""}</strong>
+              </div>
+              <div>
+                <span>Bed ROI 상태</span>
+                <strong>${escapeHtml(bed.bed_roi_state)}</strong>
+              </div>
+              <div>
+                <span>Floor Risk Zone</span>
+                <strong class="${bed.floor_risk_zone ? "value-true" : "value-false"}">${String(bed.floor_risk_zone).toUpperCase()}</strong>
+              </div>
+              ${bed.protocol_version === "1.1" ? `
+                <div>
+                  <span>Protocol</span>
+                  <strong>v${escapeHtml(bed.protocol_version)}</strong>
+                </div>
+                <div>
+                  <span>Bed ROI</span>
+                  <strong>${escapeHtml(bed.bed_count)}</strong>
+                </div>
+                <div>
+                  <span>Exit Zone</span>
+                  <strong>${escapeHtml(bed.exit_count)}</strong>
+                </div>
+                <div>
+                  <span>Floor Zone</span>
+                  <strong>${escapeHtml(bed.floor_count)}</strong>
+                </div>
+                <div>
+                  <span>Wide Shape</span>
+                  <strong class="${bed.wide_shape_hint ? "value-true" : "value-false"}">${String(bed.wide_shape_hint).toUpperCase()}</strong>
+                </div>
+              ` : ""}
+            </div>
+
+            ${actionButtons(bed)}
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderMetadata() {
+  const beds = [...state.beds].sort(
+    (a, b) =>
+      (riskPriority[a.risk_level] ?? 99) - (riskPriority[b.risk_level] ?? 99) ||
+      a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
+  );
+  elements.metadataEmpty.hidden = beds.length > 0;
+  elements.metadataTableBody.innerHTML = beds
+    .map(
+      (bed) => `
+        <tr>
+          <td data-label="Time"><time>${escapeHtml(formatTimestamp(bed, false))}</time></td>
+          <td data-label="Bed"><strong>${escapeHtml(bed.bed_id)} 침상</strong></td>
+          <td data-label="Motion_count">${escapeHtml(bed.motion_count)}</td>
+          <td data-label="ROI Counts">${bed.protocol_version === "1.1" ? `B ${escapeHtml(bed.bed_count)} / E ${escapeHtml(bed.exit_count)} / F ${escapeHtml(bed.floor_count)}` : "-"}</td>
+          <td data-label="Current / Display">${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</td>
+          <td data-label="Observed / Committed">${escapeHtml(bed.observed_zone ?? "-")} / ${escapeHtml(bed.committed_zone ?? "-")}</td>
+          <td data-label="Tracking / Source">${escapeHtml(bed.tracking_status ?? "-")} / ${escapeHtml(bed.source_status ?? "-")}</td>
+          <td data-label="Low_horizontal_hint">${String(bed.low_horizontal_hint)}</td>
+          <td data-label="No-motion duration">${bed.no_motion_duration_s === null ? "계산 불가" : `${escapeHtml(bed.no_motion_duration_s)}s`}</td>
+          <td data-label="기록 샘플 속도">${escapeHtml(measuredRate(bed.metadata_refresh_hz_observed))}</td>
+          <td data-label="이벤트-알림 지연시간">${escapeHtml(measuredLatency(bed.event_alert_latency_s_observed))}</td>
+          <td data-label="Public demo">${autoLogToggle(bed.auto_log_saved)}</td>
+        </tr>
+      `,
+    )
+    .join("");
+}
+
+function renderMetadataAI() {
+  const ai = state.metadataAI;
+  const enabled = ai?.ai_mode === "SHADOW";
+  elements.metadataAIShadowPanel.hidden = !enabled;
+  if (!enabled) return;
+  const modelLabel = String(ai.model_id || "METAFALL_MLP8")
+    .replace("_SHADOW_20260804", "")
+    .replaceAll("_", " ");
+  elements.metadataAIModel.textContent = ai.model_status === "NOT_TRAINED"
+    ? "NOT TRAINED"
+    : `${modelLabel} · SHADOW ONLY`;
+  elements.metadataAIFeatureSchema.textContent = String(
+    ai.feature_schema || "META_FEATURE_SCHEMA_V1",
+  ).replaceAll("_", " ");
+  elements.metadataAIScore.textContent =
+    ai.fall_like_score !== null &&
+    ai.fall_like_score !== undefined &&
+    Number.isFinite(Number(ai.fall_like_score))
+    ? Number(ai.fall_like_score).toFixed(3)
+    : "N/A";
+  elements.metadataAIFSMSource.textContent = String(
+    ai.fsm_decision_source || "EXISTING RULE FSM",
+  ).replaceAll("_", " ");
+  elements.metadataAIFSMControl.textContent = String(
+    ai.fsm_control || "NOT CONNECTED",
+  ).replaceAll("_", " ");
+}
+
+function renderView() {
+  elements.privacyView.hidden = state.view !== "privacy";
+  elements.eventsView.hidden = state.view !== "events";
+  elements.metadataView.hidden = state.view !== "metadata";
+  elements.navButtons.forEach((button) => {
+    const active = button.dataset.view === state.view;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
+}
+
+let alarmAudioContext = null;
+let alarmTimer = null;
+
+function hasUnconfirmedLevel3() {
+  return state.beds.some(
+    (bed) =>
+      String(bed.risk_level) === "3" &&
+      ["UNCONFIRMED", "OPEN_UNACKNOWLEDGED", "RESOLVED_UNACKNOWLEDGED"].includes(
+        bed.acknowledgement?.state,
+      ),
+  );
+}
+
+function ensureAlarmAudioContext() {
+  if (!alarmAudioContext) {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return Promise.resolve(false);
+    alarmAudioContext = new AudioContextClass();
+  }
+  if (alarmAudioContext.state === "suspended") {
+    return alarmAudioContext.resume().then(() => true).catch(() => false);
+  }
+  return Promise.resolve(alarmAudioContext.state === "running");
+}
+
+function playAlarmPulse() {
+  if (!alarmAudioContext || alarmAudioContext.state !== "running") return;
+  const startAt = alarmAudioContext.currentTime;
+  [
+    { delay: 0, frequency: 880 },
+    { delay: 0.26, frequency: 660 },
+  ].forEach(({ delay, frequency }) => {
+    const oscillator = alarmAudioContext.createOscillator();
+    const gain = alarmAudioContext.createGain();
+    oscillator.type = "square";
+    oscillator.frequency.value = frequency;
+    gain.gain.setValueAtTime(0.0001, startAt + delay);
+    gain.gain.exponentialRampToValueAtTime(0.12, startAt + delay + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startAt + delay + 0.18);
+    oscillator.connect(gain);
+    gain.connect(alarmAudioContext.destination);
+    oscillator.start(startAt + delay);
+    oscillator.stop(startAt + delay + 0.2);
+  });
+}
+
+function stopAlarmAudio() {
+  if (alarmTimer) {
+    window.clearInterval(alarmTimer);
+    alarmTimer = null;
+  }
+}
+
+function syncAlarmAudio() {
+  const shouldPlay = !state.alarmMuted && hasUnconfirmedLevel3();
+  document.body.classList.toggle("is-alarming", shouldPlay);
+  elements.alarmState.querySelector("strong").textContent = state.alarmMuted
+    ? "경보음 꺼짐"
+    : shouldPlay
+      ? "Level 3 경보 중"
+      : "경보음 켜짐";
+  if (!shouldPlay) {
+    stopAlarmAudio();
+    return;
+  }
+  ensureAlarmAudioContext().then((ready) => {
+    if (
+      !ready ||
+      state.alarmMuted ||
+      !hasUnconfirmedLevel3() ||
+      alarmTimer
+    ) {
+      return;
+    }
+    playAlarmPulse();
+    alarmTimer = window.setInterval(playAlarmPulse, 1500);
+  });
+}
+
+function renderAlarmState() {
+  elements.alarmToggle.classList.toggle("is-muted", state.alarmMuted);
+  elements.alarmToggle.setAttribute("aria-pressed", String(state.alarmMuted));
+  elements.alarmToggle.title = state.alarmMuted ? "경보음 켜기" : "경보음 끄기";
+  elements.alarmState.classList.toggle("is-muted", state.alarmMuted);
+  syncAlarmAudio();
+}
+
+function showToast(message, isError = false) {
+  elements.toast.textContent = message;
+  elements.toast.classList.toggle("is-error", isError);
+  elements.toast.classList.add("is-visible");
+  window.clearTimeout(showToast.timer);
+  showToast.timer = window.setTimeout(() => {
+    elements.toast.classList.remove("is-visible");
+  }, 2600);
+}
+
+function cloneScene(scene) {
+  return JSON.parse(JSON.stringify(scene));
+}
+
+function renderAll() {
+  renderPrivacy();
+  renderEvents();
+  renderMetadata();
+  renderMetadataAI();
+  syncAlarmAudio();
+}
+
+function applyScene(sceneId, { updateUrl = true } = {}) {
+  const scene = state.demoData?.scenes?.find((item) => item.id === sceneId);
+  if (!scene) return false;
+  const snapshot = cloneScene(scene);
+  state.activeSceneId = snapshot.id;
+  state.beds = Array.isArray(snapshot.beds) ? snapshot.beds : [];
+  state.sourceHealth = snapshot.source_health || null;
+  state.profile1Status = snapshot.profile1_fsm || null;
+  state.metadataAI = snapshot.metadata_ai || null;
+
+  elements.demoSceneSelect.value = snapshot.id;
+  elements.demoSceneButtons
+    .querySelectorAll("button[data-scene-id]")
+    .forEach((button) => {
+      const selected = button.dataset.sceneId === snapshot.id;
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+  elements.demoSceneDescription.textContent = snapshot.description;
+  elements.candidateReviewBanner.textContent =
+    state.profile1Status?.label || "QR DEMO · RECORDED METADATA · NOT LIVE";
+  elements.candidateReviewBanner.hidden = false;
+  elements.connectionStatus.textContent =
+    state.sourceHealth?.message || "기록 metadata · 라이브 연결 아님";
+
+  const sourceState = state.sourceHealth?.state || "DEGRADED";
+  document.body.classList.toggle("is-disconnected", sourceState === "ERROR");
+  document.body.classList.toggle("is-delayed", sourceState === "DEGRADED");
+  document.body.classList.toggle("is-recorded", sourceState === "RECORDED");
+
+  if (updateUrl) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("scene", snapshot.id);
+    window.history.replaceState(null, "", url);
+  }
+  renderAll();
+  document.querySelector(".screen-stage").scrollTo({ top: 0, behavior: "smooth" });
+  return true;
+}
+
+async function loadDemoData() {
+  try {
+    let payload = EMBEDDED_DEMO_DATA;
+    if (!payload) {
+      const response = await fetch(DATA_URL, { cache: "no-store" });
+      if (!response.ok) throw new Error(`demo data ${response.status}`);
+      payload = await response.json();
+    }
+    if (payload.mode !== "RECORDED_READ_ONLY_DEMO") {
+      throw new Error("unexpected demo mode");
+    }
+    if (!Array.isArray(payload.scenes) || payload.scenes.length === 0) {
+      throw new Error("demo scenes are missing");
+    }
+    state.demoData = payload;
+    elements.demoSceneSelect.innerHTML = payload.scenes
+      .map((scene) => `<option value="${escapeHtml(scene.id)}">${escapeHtml(scene.label)}</option>`)
+      .join("");
+    elements.demoSceneButtons.innerHTML = payload.scenes
+      .map((scene) => {
+        const level = String(scene.beds?.[0]?.display_level ?? "U");
+        const levelClass = level.toLowerCase().replace(/[^a-z0-9_-]/g, "-");
+        return `
+          <button
+            type="button"
+            class="demo-scene-button level-${escapeHtml(levelClass)}"
+            data-scene-id="${escapeHtml(scene.id)}"
+            aria-pressed="false"
+          >
+            <span>Level ${escapeHtml(level)}</span>
+            <b>${escapeHtml(scene.label)}</b>
+          </button>
+        `;
+      })
+      .join("");
+
+    const requestedScene = urlState.get("scene");
+    const initialScene = payload.scenes.some((scene) => scene.id === requestedScene)
+      ? requestedScene
+      : payload.default_scene;
+    if (!applyScene(initialScene, { updateUrl: false })) {
+      applyScene(payload.scenes[0].id, { updateUrl: false });
+    }
+  } catch (error) {
+    elements.connectionStatus.textContent = "기록 데모를 불러오지 못했습니다";
+    document.body.classList.add("is-disconnected");
+    elements.privacyList.innerHTML =
+      '<div class="empty-state">기록 metadata 파일을 불러오지 못했습니다.</div>';
+    console.error(error);
+  }
+}
+
+function updateAcknowledgement(bedId, incidentId, action, button) {
+  button.disabled = true;
+  const bed = state.beds.find(
+    (item) => item.bed_id === bedId && item.incident_id === incidentId,
+  );
+  if (!bed || !incidentId) {
+    showToast("시연 가능한 Incident가 없습니다.", true);
+    renderEvents();
+    return;
+  }
+
+  if (action === "STARTED") {
+    bed.acknowledgement = {
+      ...bed.acknowledgement,
+      state: "RESPONSE_IN_PROGRESS",
+      label: "확인 중 · 시연",
+    };
+    showToast(`${bedId} 확인 시작을 화면에만 반영했습니다.`);
+  } else if (action === "COMPLETED") {
+    bed.acknowledgement = {
+      ...bed.acknowledgement,
+      state: "ACKNOWLEDGED_MONITORING",
+      label: "확인 완료 · 시연",
+    };
+    showToast(`${bedId} 확인 완료를 화면에만 반영했습니다.`);
+  }
+  renderEvents();
+  syncAlarmAudio();
+}
+
+elements.navButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    state.view = button.dataset.view;
+    localStorage.setItem("privacyZeroView", state.view);
+    renderView();
+    document.querySelector(".screen-stage").scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+elements.privacySort.value = state.privacySort;
+elements.privacySort.addEventListener("change", () => {
+  state.privacySort = elements.privacySort.value;
+  localStorage.setItem("privacyZeroSort", state.privacySort);
+  renderPrivacy();
+});
+
+elements.demoSceneSelect.addEventListener("change", () => {
+  applyScene(elements.demoSceneSelect.value);
+});
+
+elements.demoSceneButtons.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-scene-id]");
+  if (!button) return;
+  applyScene(button.dataset.sceneId);
+});
+
+elements.alarmToggle.addEventListener("click", () => {
+  ensureAlarmAudioContext();
+  state.alarmMuted = !state.alarmMuted;
+  localStorage.setItem("privacyZeroAlarmMuted", String(state.alarmMuted));
+  renderAlarmState();
+  showToast(
+    state.alarmMuted
+      ? "경보음을 껐습니다. 이벤트 표시는 유지됩니다."
+      : "경보음을 켰습니다.",
+  );
+});
+
+elements.eventList.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+  updateAcknowledgement(
+    button.dataset.bedId,
+    button.dataset.incidentId,
+    button.dataset.action,
+    button,
+  );
+});
+
+function unlockAlarmAudio() {
+  ensureAlarmAudioContext().then(syncAlarmAudio);
+  document.removeEventListener("pointerdown", unlockAlarmAudio);
+  document.removeEventListener("keydown", unlockAlarmAudio);
+}
+
+document.addEventListener("pointerdown", unlockAlarmAudio, { once: true });
+document.addEventListener("keydown", unlockAlarmAudio, { once: true });
+
+renderView();
+renderAlarmState();
+loadDemoData();
+
+if (window.__PRIVACYZERO_STANDALONE__ !== true && "serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js").catch(console.error);
+}
+
+  </script>
+</body>
+</html>
