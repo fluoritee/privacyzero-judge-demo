@@ -2148,6 +2148,653 @@ svg {
   }
 }
 
+/* 2026-08-11 judge demo polish: live device clock and quieter status surfaces. */
+.live-clock {
+  min-width: 132px;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  color: var(--muted);
+}
+
+.live-clock span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.live-clock time {
+  color: var(--ink);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+}
+
+.demo-toolbar {
+  background: #fff;
+  border-color: #d5dee4;
+  box-shadow: 0 8px 24px rgb(22 43 56 / 7%);
+}
+
+.runtime-activity {
+  flex: 1 0 100%;
+  min-height: 42px;
+  padding: 9px 12px;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  color: #315044;
+  background: #f2faf5;
+  border: 1px solid #cfe5d7;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.runtime-activity strong {
+  color: #176340;
+  font-size: 12px;
+}
+
+.runtime-activity > span:not(.runtime-pulse) {
+  min-width: 0;
+  overflow: hidden;
+  color: #5f6e66;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.runtime-activity time {
+  color: #315044;
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+}
+
+.runtime-activity.level-1,
+.runtime-activity.level-2 {
+  color: #735015;
+  background: #fff9ed;
+  border-color: #ead8b5;
+}
+
+.runtime-activity.level-1 strong,
+.runtime-activity.level-2 strong {
+  color: #8b5700;
+}
+
+.runtime-activity.level-3,
+.runtime-activity.is-warning {
+  color: #7e2828;
+  background: #fff4f3;
+  border-color: #edcdca;
+}
+
+.runtime-activity.level-3 strong,
+.runtime-activity.is-warning strong {
+  color: #a62d2d;
+}
+
+.runtime-pulse {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.runtime-pulse i {
+  position: absolute;
+  inset: -5px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  animation: runtime-pulse 1.5s ease-out infinite;
+}
+
+@keyframes runtime-pulse {
+  0% { opacity: 0.8; transform: scale(0.45); }
+  75%, 100% { opacity: 0; transform: scale(1.25); }
+}
+
+.flow-ring {
+  animation: flow-breathe 2.2s ease-in-out infinite;
+}
+
+@keyframes flow-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(8 121 197 / 8%); }
+  50% { box-shadow: 0 0 0 9px rgb(8 121 197 / 10%); }
+}
+
+.event-heading {
+  min-height: 74px;
+  padding: 0 6px;
+  justify-content: space-between;
+  border-bottom-color: #d9dee1;
+}
+
+.event-heading h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+}
+
+.alarm-toggle {
+  width: 50px;
+  height: 50px;
+}
+
+.alarm-toggle svg {
+  width: 34px;
+  height: 34px;
+}
+
+.alarm-state {
+  margin-top: 10px;
+  border: 1px solid #c9e5d6;
+  border-radius: 6px;
+}
+
+.read-only-note {
+  margin-top: 8px;
+  padding: 8px 11px;
+  background: #f7fafc;
+  border: 1px solid #dce5ea;
+  border-left-width: 3px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+.event-list {
+  padding: 12px 0 2px;
+}
+
+.event-healthy-card {
+  min-height: 156px;
+  padding: 24px 26px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid #cfddd4;
+  border-left: 5px solid var(--green-dark);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgb(22 43 56 / 7%);
+}
+
+.healthy-check {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--green-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px #e7f5ed;
+}
+
+.healthy-check svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+}
+
+.event-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: #68737a;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.healthy-copy h3,
+.event-minimal-header h3,
+.metadata-card h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.healthy-copy p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.healthy-status {
+  display: grid;
+  justify-items: end;
+  gap: 9px;
+}
+
+.healthy-status time {
+  color: #3b474e;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+}
+
+.healthy-status span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-dark);
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.healthy-status i {
+  width: 7px;
+  height: 7px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.event-card-minimal {
+  min-height: 0;
+  padding: 18px 20px 14px;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgb(22 43 56 / 7%);
+}
+
+.event-minimal-header,
+.metadata-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.event-recorded-time {
+  flex: 0 0 auto;
+  display: grid;
+  justify-items: end;
+  gap: 3px;
+  color: var(--muted);
+}
+
+.event-recorded-time span {
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.event-recorded-time time {
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.event-primary-row {
+  margin-top: 16px;
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  border-top: 1px solid #e3e7e9;
+  border-bottom: 1px solid #e3e7e9;
+}
+
+.event-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.event-summary-grid span,
+.metadata-kpis span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.event-summary-grid strong {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.event-technical,
+.metadata-technical {
+  margin-top: 10px;
+  color: #56636b;
+}
+
+.event-technical summary,
+.metadata-technical summary,
+.metadata-ai-shadow summary {
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.event-technical dl,
+.metadata-technical dl {
+  margin: 10px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.event-technical dl div,
+.metadata-technical dl div {
+  padding: 8px 10px;
+  background: #f6f8f9;
+  border-radius: 5px;
+}
+
+.event-technical dt,
+.metadata-technical dt {
+  font-size: 8px;
+}
+
+.event-technical dd,
+.metadata-technical dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.event-card-minimal .event-actions {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.metadata-view {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+}
+
+.metadata-heading {
+  min-height: 72px;
+  padding: 0 4px 14px;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.metadata-icon,
+.metadata-icon svg {
+  width: 42px;
+  height: 42px;
+}
+
+.metadata-heading h2 {
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.metadata-table-wrap {
+  overflow: visible;
+}
+
+.metadata-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.metadata-card {
+  overflow: hidden;
+  padding: 18px 20px 0;
+  background: #fff;
+  border: 1px solid #d6dde1;
+  border-left: 5px solid var(--green-dark);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgb(22 43 56 / 7%);
+}
+
+.metadata-card.level-1 { border-left-color: var(--blue); }
+.metadata-card.level-2 { border-left-color: var(--amber); }
+.metadata-card.level-3 { border-left-color: var(--red); }
+.metadata-card.level-u { border-left-color: var(--violet); }
+
+.metadata-kpis {
+  margin-top: 15px;
+  padding: 14px 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  border-top: 1px solid #e3e7e9;
+  border-bottom: 1px solid #e3e7e9;
+}
+
+.metadata-kpis strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.metadata-health-row {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.metadata-health-row > span:not(.status-chip) {
+  padding: 3px 7px;
+  background: #f1f4f5;
+  border-radius: 999px;
+}
+
+.metadata-card footer {
+  margin: 12px -20px 0;
+  min-height: 38px;
+  padding: 9px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #5c6870;
+  background: #f7f9fa;
+  border-top: 1px solid #e3e7e9;
+  font-size: 9px;
+}
+
+.metadata-card footer > span:first-child {
+  color: #4f5b62;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.metadata-card footer > span:last-child {
+  margin-left: auto;
+}
+
+.metadata-ai-shadow {
+  margin: 0 0 12px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #d9d2ed;
+  border-radius: 7px;
+  background: #fbfaff;
+  box-shadow: none;
+}
+
+.metadata-ai-shadow-title {
+  margin: 0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style-position: inside;
+}
+
+.metadata-ai-shadow-title h3 {
+  font-size: 12px;
+}
+
+.metadata-ai-shadow-title p {
+  font-size: 9px;
+}
+
+.shadow-badge {
+  padding: 4px 7px;
+  font-size: 8px;
+}
+
+.metadata-ai-shadow-body {
+  padding: 0 12px 12px;
+}
+
+.metadata-ai-shadow dl div {
+  padding: 8px 9px;
+  border-radius: 6px;
+}
+
+.metadata-ai-shadow dt {
+  font-size: 9px;
+}
+
+.metadata-ai-shadow dd {
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .live-clock {
+    min-width: 84px;
+  }
+
+  .live-clock span {
+    display: none;
+  }
+
+  .live-clock time {
+    max-width: 92px;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: right;
+  }
+
+  .facility-area .connection-state {
+    display: none;
+  }
+
+  .runtime-activity {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .runtime-activity > span:not(.runtime-pulse) {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+
+  .runtime-activity time {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .event-healthy-card {
+    padding: 20px 18px;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .healthy-status {
+    grid-column: 2;
+    justify-items: start;
+  }
+
+  .event-minimal-header,
+  .metadata-card > header {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .event-recorded-time {
+    justify-items: start;
+  }
+
+  .event-primary-row {
+    grid-template-columns: 1fr;
+  }
+
+  .event-summary-grid,
+  .metadata-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .event-technical dl,
+  .metadata-technical dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metadata-card footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .metadata-card footer > span:last-child {
+    margin-left: 0;
+  }
+
+  .metadata-ai-shadow dl {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .demo-toolbar-copy {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .demo-toolbar-copy p,
+  .demo-scene-control {
+    display: none;
+  }
+
+  .demo-scene-buttons {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .demo-scene-button {
+    min-height: 44px;
+    padding: 6px 7px;
+  }
+
+  .demo-scene-button span {
+    font-size: 9px;
+  }
+
+  .demo-scene-button b {
+    font-size: 10px;
+  }
+
+  .healthy-check {
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 0 0 6px #e7f5ed;
+  }
+
+  .healthy-copy h3,
+  .event-minimal-header h3,
+  .metadata-card h3 {
+    font-size: 17px;
+  }
+
+  .healthy-status time {
+    font-size: 15px;
+  }
+
+  .event-card-minimal,
+  .metadata-card {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .metadata-card footer {
+    margin-right: -14px;
+    margin-left: -14px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -2168,6 +2815,10 @@ svg {
       </div>
 
       <div class="facility-area">
+        <div class="live-clock" aria-label="현재 기기 시각">
+          <span>현재 시각</span>
+          <time id="liveClock" datetime="">--:--:--</time>
+        </div>
         <div class="connection-state is-recorded">
           <span class="live-dot" aria-hidden="true"></span>
           <span id="connectionStatus">기록 metadata 불러오는 중</span>
@@ -2201,6 +2852,12 @@ svg {
           role="group"
           aria-label="Level별 기록 화면 바로가기"
         ></div>
+        <div id="runtimeActivity" class="runtime-activity" role="status" aria-live="polite">
+          <span class="runtime-pulse" aria-hidden="true"><i></i></span>
+          <strong id="runtimeStatus">기록 화면 준비 중</strong>
+          <span id="runtimeDetail">상태 데이터를 불러오고 있습니다.</span>
+          <time id="runtimeClock" datetime="">--:--:--</time>
+        </div>
       </section>
 
       <section id="privacyView" class="app-view privacy-view" aria-labelledby="privacyTitle">
@@ -2277,49 +2934,32 @@ svg {
             </svg>
           </span>
           <div>
-            <p>Recorded metadata · Read only</p>
-            <h2 id="metadataTitle">Metadata / Audit Log</h2>
+            <p>Recorded data · Read only</p>
+            <h2 id="metadataTitle">Metadata · Audit</h2>
           </div>
         </div>
 
-        <section id="metadataAIShadowPanel" class="metadata-ai-shadow" aria-labelledby="metadataAIShadowTitle" hidden>
-          <div class="metadata-ai-shadow-title">
+        <details id="metadataAIShadowPanel" class="metadata-ai-shadow" hidden>
+          <summary class="metadata-ai-shadow-title">
             <span class="shadow-badge">SHADOW MODE</span>
             <div>
-              <p>Metadata AI · 개발/심사 확인용</p>
-              <h3 id="metadataAIShadowTitle">기존 FSM 판단과 분리됨</h3>
+              <p>개발 정보</p>
+              <h3>AI shadow · 기존 FSM과 분리</h3>
             </div>
+          </summary>
+          <div class="metadata-ai-shadow-body">
+            <dl>
+              <div><dt>Model</dt><dd id="metadataAIModel">NOT TRAINED</dd></div>
+              <div><dt>Feature Schema</dt><dd id="metadataAIFeatureSchema">META_FEATURE_SCHEMA_V1</dd></div>
+              <div><dt>AI Fall-like Score</dt><dd id="metadataAIScore">N/A</dd></div>
+              <div><dt>FSM Decision Source</dt><dd id="metadataAIFSMSource">EXISTING RULE FSM</dd></div>
+              <div><dt>FSM Control</dt><dd id="metadataAIFSMControl">NOT CONNECTED</dd></div>
+            </dl>
           </div>
-          <dl>
-            <div><dt>Model</dt><dd id="metadataAIModel">NOT TRAINED</dd></div>
-            <div><dt>Feature Schema</dt><dd id="metadataAIFeatureSchema">META_FEATURE_SCHEMA_V1</dd></div>
-            <div><dt>AI Fall-like Score</dt><dd id="metadataAIScore">N/A</dd></div>
-            <div><dt>FSM Decision Source</dt><dd id="metadataAIFSMSource">EXISTING RULE FSM</dd></div>
-            <div><dt>FSM Control</dt><dd id="metadataAIFSMControl">NOT CONNECTED</dd></div>
-          </dl>
-        </section>
+        </details>
 
         <div class="metadata-table-wrap">
-          <table class="metadata-table">
-            <caption>침상별 기록 metadata 및 정적 데모 저장 상태</caption>
-            <thead>
-              <tr>
-                <th scope="col">Recorded Time</th>
-                <th scope="col">Bed</th>
-                <th scope="col">Motion_count</th>
-                <th scope="col">ROI Counts</th>
-                <th scope="col">Current / Display</th>
-                <th scope="col">Observed / Committed</th>
-                <th scope="col">Tracking / Source</th>
-                <th scope="col">Low_horizontal_hint</th>
-                <th scope="col">No-motion duration</th>
-                <th scope="col">기록 샘플 속도</th>
-                <th scope="col">이벤트-알림 지연시간</th>
-                <th scope="col">Public demo</th>
-              </tr>
-            </thead>
-            <tbody id="metadataTableBody"></tbody>
-          </table>
+          <div id="metadataCards" class="metadata-cards" aria-live="polite"></div>
           <div id="metadataEmpty" class="metadata-empty" hidden>표시할 metadata가 없습니다.</div>
         </div>
       </section>
@@ -2348,7 +2988,7 @@ svg {
           <path d="M14 2v6h6"></path>
           <path d="M8 13h8M8 17h8M8 9h2"></path>
         </svg>
-        <span>Metadata / Audit Log</span>
+        <span>Metadata · Audit</span>
       </button>
     </nav>
   </div>
@@ -2398,6 +3038,7 @@ const state = {
 if (!VIEWS.includes(state.view)) state.view = "privacy";
 
 const elements = {
+  liveClock: document.querySelector("#liveClock"),
   connectionStatus: document.querySelector("#connectionStatus"),
   candidateReviewBanner: document.querySelector("#candidateReviewBanner"),
   navButtons: document.querySelectorAll(".nav-button"),
@@ -2415,7 +3056,7 @@ const elements = {
   alarmState: document.querySelector("#alarmState"),
   activeEventCount: document.querySelector("#activeEventCount"),
   eventList: document.querySelector("#eventList"),
-  metadataTableBody: document.querySelector("#metadataTableBody"),
+  metadataCards: document.querySelector("#metadataCards"),
   metadataEmpty: document.querySelector("#metadataEmpty"),
   metadataAIShadowPanel: document.querySelector("#metadataAIShadowPanel"),
   metadataAIModel: document.querySelector("#metadataAIModel"),
@@ -2426,6 +3067,10 @@ const elements = {
   demoSceneSelect: document.querySelector("#demoSceneSelect"),
   demoSceneButtons: document.querySelector("#demoSceneButtons"),
   demoSceneDescription: document.querySelector("#demoSceneDescription"),
+  runtimeActivity: document.querySelector("#runtimeActivity"),
+  runtimeStatus: document.querySelector("#runtimeStatus"),
+  runtimeDetail: document.querySelector("#runtimeDetail"),
+  runtimeClock: document.querySelector("#runtimeClock"),
   toast: document.querySelector("#toast"),
 };
 
@@ -2484,6 +3129,36 @@ function formatTimestamp(bed, includeSeconds = true) {
     }
   }
   return `frame ${bed.source_frame_id}`;
+}
+
+const liveDateTimeFormatter = new Intl.DateTimeFormat("ko-KR", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+const liveTimeFormatter = new Intl.DateTimeFormat("ko-KR", {
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+function updateLiveClocks() {
+  const now = new Date();
+  const iso = now.toISOString();
+  elements.liveClock.dateTime = iso;
+  elements.liveClock.textContent = liveDateTimeFormatter.format(now);
+  elements.runtimeClock.dateTime = iso;
+  elements.runtimeClock.textContent = liveTimeFormatter.format(now);
+  document.querySelectorAll("[data-live-clock]").forEach((clock) => {
+    clock.dateTime = iso;
+    clock.textContent = liveTimeFormatter.format(now);
+  });
 }
 
 function hasPrivacyIssue(bed) {
@@ -2713,11 +3388,11 @@ function renderEvents() {
   elements.activeEventCount.textContent = String(alerts.length);
   elements.eventTabCount.hidden = alerts.length === 0;
 
-  if (!events.length) {
+  if (!state.beds.length) {
     elements.eventList.innerHTML = `
       <div class="empty-state event-empty">
-        <strong>현재 발생한 이벤트가 없습니다.</strong>
-        <span>모든 침상이 정상 상태입니다.</span>
+        <strong>표시할 기록 상태가 없습니다.</strong>
+        <span>데모 데이터를 다시 확인해주세요.</span>
       </div>
     `;
     return;
@@ -2728,88 +3403,69 @@ function renderEvents() {
     return;
   }
 
+  if (!alerts.length) {
+    const bed = state.beds[0];
+    elements.eventList.innerHTML = `
+      <article class="event-healthy-card">
+        <span class="healthy-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+        </span>
+        <div class="healthy-copy">
+          <span class="event-eyebrow">MONITORING ACTIVE · RECORDED REPLAY</span>
+          <h3>Level 0 · 정상 감시 중</h3>
+          <p>${escapeHtml(bed.bed_id)} · ${escapeHtml(compactZoneLabel(bed.committed_zone))} · ${escapeHtml(measuredRate(bed.metadata_refresh_hz_observed))} 기록 샘플</p>
+        </div>
+        <div class="healthy-status">
+          <time data-live-clock datetime="">--:--:--</time>
+          <span><i aria-hidden="true"></i> Source ${escapeHtml(compactSourceLabel(bed))}</span>
+        </div>
+      </article>
+    `;
+    updateLiveClocks();
+    return;
+  }
+
   elements.eventList.innerHTML = events
     .map(
       (bed) => `
-        <article class="event-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
-          <div class="patient-photo-placeholder metadata-only-placeholder" role="img" aria-label="원본 영상 비표시">
-            <span>RAW<br>OFF</span>
-          </div>
-          <div class="event-card-content">
-            <header>
-              <div>
-                <span class="patient-bed">${escapeHtml(bed.bed_id)}</span>
-                <h3>${escapeHtml(bed.bed_id)} 침상</h3>
-              </div>
-              <time>${escapeHtml(formatTimestamp(bed))}</time>
-            </header>
-
-            <div class="event-fields">
-              <div>
-                <span>Event Type</span>
-                <strong>${escapeHtml(bed.event_type)}</strong>
-              </div>
-              <div>
-                <span>Risk Level</span>
-                <strong class="risk-badge risk-${escapeHtml(String(bed.risk_level).toLowerCase())}">
-                  Level ${escapeHtml(bed.risk_level)}
-                  <small>${escapeHtml(displayRiskLabel(bed))}</small>
-                </strong>
-              </div>
-              <div>
-                <span>Current / Display</span>
-                <strong>${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</strong>
-              </div>
-              <div>
-                <span>Observed / Committed Zone</span>
-                <strong>${escapeHtml(bed.observed_zone ?? "-")} / ${escapeHtml(bed.committed_zone ?? "-")}</strong>
-              </div>
-              <div>
-                <span>Transition</span>
-                <strong>${escapeHtml(bed.transition_phase ?? "-")}</strong>
-              </div>
-              <div>
-                <span>Tracking / Source</span>
-                <strong class="status-pair">${statusChip("Tracking", bed.tracking_status)} ${statusChip("Source", bed.source_status)}</strong>
-              </div>
-              <div>
-                <span>Bed-exit Episode</span>
-                <strong>${escapeHtml(bed.bed_exit_status ?? "NONE")}${bed.bed_exit_active ? " · ACTIVE" : ""}</strong>
-              </div>
-              <div>
-                <span>Bed ROI 상태</span>
-                <strong>${escapeHtml(bed.bed_roi_state)}</strong>
-              </div>
-              <div>
-                <span>Floor Risk Zone</span>
-                <strong class="${bed.floor_risk_zone ? "value-true" : "value-false"}">${String(bed.floor_risk_zone).toUpperCase()}</strong>
-              </div>
-              ${bed.protocol_version === "1.1" ? `
-                <div>
-                  <span>Protocol</span>
-                  <strong>v${escapeHtml(bed.protocol_version)}</strong>
-                </div>
-                <div>
-                  <span>Bed ROI</span>
-                  <strong>${escapeHtml(bed.bed_count)}</strong>
-                </div>
-                <div>
-                  <span>Exit Zone</span>
-                  <strong>${escapeHtml(bed.exit_count)}</strong>
-                </div>
-                <div>
-                  <span>Floor Zone</span>
-                  <strong>${escapeHtml(bed.floor_count)}</strong>
-                </div>
-                <div>
-                  <span>Wide Shape</span>
-                  <strong class="${bed.wide_shape_hint ? "value-true" : "value-false"}">${String(bed.wide_shape_hint).toUpperCase()}</strong>
-                </div>
-              ` : ""}
+        <article class="event-card event-card-minimal level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+          <header class="event-minimal-header">
+            <div>
+              <span class="event-eyebrow">${escapeHtml(bed.bed_id)} · RECORDED METADATA</span>
+              <h3>${escapeHtml(displayRiskLabel(bed))}</h3>
             </div>
+            <div class="event-recorded-time">
+              <span>기록 시각</span>
+              <time>${escapeHtml(formatTimestamp(bed))}</time>
+            </div>
+          </header>
 
-            ${actionButtons(bed)}
+          <div class="event-primary-row">
+            <strong class="risk-badge risk-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+              Level ${escapeHtml(bed.display_level ?? bed.risk_level)}
+              <small>${escapeHtml(bed.event_type)}</small>
+            </strong>
+            <div class="event-summary-grid">
+              <div><span>Zone</span><strong>${escapeHtml(compactZoneLabel(bed.committed_zone))}</strong></div>
+              <div><span>Transition</span><strong>${escapeHtml(bed.transition_phase ?? "-")}</strong></div>
+              <div><span>Tracking</span><strong>${escapeHtml(bed.tracking_status ?? "-")}</strong></div>
+              <div><span>Source</span><strong>${escapeHtml(compactSourceLabel(bed))}</strong></div>
+            </div>
           </div>
+
+          <details class="event-technical">
+            <summary>세부 metadata</summary>
+            <dl>
+              <div><dt>Current / Display</dt><dd>${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</dd></div>
+              <div><dt>Observed / Committed</dt><dd>${escapeHtml(bed.observed_zone ?? "-")} / ${escapeHtml(bed.committed_zone ?? "-")}</dd></div>
+              <div><dt>Motion</dt><dd>${escapeHtml(bed.motion_count)}</dd></div>
+              <div><dt>ROI B / E / F</dt><dd>${escapeHtml(bed.bed_count)} / ${escapeHtml(bed.exit_count)} / ${escapeHtml(bed.floor_count)}</dd></div>
+              <div><dt>No motion</dt><dd>${bed.no_motion_duration_s === null ? "계산 불가" : `${escapeHtml(bed.no_motion_duration_s)}s`}</dd></div>
+              <div><dt>RAW</dt><dd>표시·저장·전송 OFF</dd></div>
+            </dl>
+          </details>
+
+          ${actionButtons(bed)}
         </article>
       `,
     )
@@ -2823,23 +3479,48 @@ function renderMetadata() {
       a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
   );
   elements.metadataEmpty.hidden = beds.length > 0;
-  elements.metadataTableBody.innerHTML = beds
+  elements.metadataCards.innerHTML = beds
     .map(
       (bed) => `
-        <tr>
-          <td data-label="Time"><time>${escapeHtml(formatTimestamp(bed, false))}</time></td>
-          <td data-label="Bed"><strong>${escapeHtml(bed.bed_id)} 침상</strong></td>
-          <td data-label="Motion_count">${escapeHtml(bed.motion_count)}</td>
-          <td data-label="ROI Counts">${bed.protocol_version === "1.1" ? `B ${escapeHtml(bed.bed_count)} / E ${escapeHtml(bed.exit_count)} / F ${escapeHtml(bed.floor_count)}` : "-"}</td>
-          <td data-label="Current / Display">${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</td>
-          <td data-label="Observed / Committed">${escapeHtml(bed.observed_zone ?? "-")} / ${escapeHtml(bed.committed_zone ?? "-")}</td>
-          <td data-label="Tracking / Source">${escapeHtml(bed.tracking_status ?? "-")} / ${escapeHtml(bed.source_status ?? "-")}</td>
-          <td data-label="Low_horizontal_hint">${String(bed.low_horizontal_hint)}</td>
-          <td data-label="No-motion duration">${bed.no_motion_duration_s === null ? "계산 불가" : `${escapeHtml(bed.no_motion_duration_s)}s`}</td>
-          <td data-label="기록 샘플 속도">${escapeHtml(measuredRate(bed.metadata_refresh_hz_observed))}</td>
-          <td data-label="이벤트-알림 지연시간">${escapeHtml(measuredLatency(bed.event_alert_latency_s_observed))}</td>
-          <td data-label="Public demo">${autoLogToggle(bed.auto_log_saved)}</td>
-        </tr>
+        <article class="metadata-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+          <header>
+            <div>
+              <span class="event-eyebrow">${escapeHtml(bed.bed_id)} · READ ONLY</span>
+              <h3>Level ${escapeHtml(bed.display_level ?? bed.risk_level)} · ${escapeHtml(displayRiskLabel(bed))}</h3>
+            </div>
+            <div class="event-recorded-time"><span>기록 시각</span><time>${escapeHtml(formatTimestamp(bed))}</time></div>
+          </header>
+
+          <div class="metadata-kpis">
+            <div><span>Motion</span><strong>${escapeHtml(bed.motion_count)}</strong></div>
+            <div><span>ROI · B / E / F</span><strong>${escapeHtml(bed.bed_count)} / ${escapeHtml(bed.exit_count)} / ${escapeHtml(bed.floor_count)}</strong></div>
+            <div><span>Zone</span><strong>${escapeHtml(bed.observed_zone ?? "-")} → ${escapeHtml(bed.committed_zone ?? "-")}</strong></div>
+            <div><span>No motion</span><strong>${bed.no_motion_duration_s === null ? "계산 불가" : `${escapeHtml(bed.no_motion_duration_s)}s`}</strong></div>
+          </div>
+
+          <div class="metadata-health-row">
+            ${statusChip("Tracking", bed.tracking_status)}
+            ${statusChip("Source", bed.source_status)}
+            <span>Protocol v${escapeHtml(bed.protocol_version ?? "-")}</span>
+            <span>${escapeHtml(measuredRate(bed.metadata_refresh_hz_observed))}</span>
+          </div>
+
+          <details class="metadata-technical">
+            <summary>기술 필드 보기</summary>
+            <dl>
+              <div><dt>Current / Display</dt><dd>${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</dd></div>
+              <div><dt>Low horizontal hint</dt><dd>${String(bed.low_horizontal_hint)}</dd></div>
+              <div><dt>Event latency</dt><dd>${escapeHtml(measuredLatency(bed.event_alert_latency_s_observed))}</dd></div>
+              <div><dt>Frame</dt><dd>${escapeHtml(bed.source_frame_id)}</dd></div>
+            </dl>
+          </details>
+
+          <footer>
+            <span>AUDIT</span>
+            <strong>브라우저 시연 · 서버 로그 미생성</strong>
+            <span>RAW 표시·저장·전송 OFF</span>
+          </footer>
+        </article>
       `,
     )
     .join("");
@@ -2985,11 +3666,32 @@ function cloneScene(scene) {
   return JSON.parse(JSON.stringify(scene));
 }
 
+function updateRuntimeStatus() {
+  const bed = state.beds[0];
+  if (!bed) {
+    elements.runtimeStatus.textContent = "기록 화면 대기";
+    elements.runtimeDetail.textContent = "표시할 metadata가 없습니다.";
+    elements.runtimeActivity.className = "runtime-activity is-warning";
+    return;
+  }
+  const level = String(bed.display_level ?? bed.risk_level ?? "U");
+  const sourceOk = compactSourceLabel(bed) === "OK";
+  elements.runtimeStatus.textContent = sourceOk
+    ? level === "0"
+      ? "기록 재생 정상"
+      : `Level ${level} 상태 표시 중`
+    : "소스 확인 화면 표시 중";
+  elements.runtimeDetail.textContent = `${bed.bed_id} · ${compactZoneLabel(bed.committed_zone)} · ${measuredRate(bed.metadata_refresh_hz_observed)}`;
+  elements.runtimeActivity.className = `runtime-activity level-${level.toLowerCase()}${sourceOk ? "" : " is-warning"}`;
+}
+
 function renderAll() {
   renderPrivacy();
   renderEvents();
   renderMetadata();
   renderMetadataAI();
+  updateRuntimeStatus();
+  updateLiveClocks();
   syncAlarmAudio();
 }
 
@@ -3175,6 +3877,8 @@ document.addEventListener("keydown", unlockAlarmAudio, { once: true });
 
 renderView();
 renderAlarmState();
+updateLiveClocks();
+window.setInterval(updateLiveClocks, 1000);
 loadDemoData();
 
 if (window.__PRIVACYZERO_STANDALONE__ !== true && "serviceWorker" in navigator) {
