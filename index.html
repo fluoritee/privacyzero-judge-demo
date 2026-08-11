@@ -2795,12 +2795,286 @@ svg {
   }
 }
 
+/* Final judge view: only status, required action and a short history remain. */
+.privacy-list {
+  margin-top: 12px;
+}
+
+.status-card {
+  border-left: 5px solid var(--green-dark);
+  box-shadow: 0 8px 24px rgb(22 43 56 / 8%);
+}
+
+.status-card.level-1 { border-left-color: var(--blue); }
+.status-card.level-2 { border-left-color: var(--amber); }
+.status-card.level-3 { border-left-color: var(--red); }
+.status-card.level-u { border-left-color: var(--violet); }
+
+.status-card-body {
+  min-height: 210px;
+  padding: 26px 30px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+  align-items: center;
+  gap: 34px;
+}
+
+.status-primary > span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.status-level {
+  width: fit-content;
+  margin-top: 8px;
+  padding: 7px 11px;
+  display: block;
+  color: #fff;
+  background: var(--green-dark);
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.status-level.level-1 { background: var(--blue); }
+.status-level.level-2 { background: var(--amber); }
+.status-level.level-3 { background: var(--red); }
+.status-level.level-u { background: var(--violet); }
+
+.status-primary h3 {
+  margin: 12px 0 0;
+  font-size: clamp(25px, 3vw, 38px);
+}
+
+.status-primary p {
+  margin: 8px 0 0;
+  color: #56636b;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.privacy-proof {
+  min-height: 150px;
+  padding: 20px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  color: var(--green-dark);
+  background: #f1faf5;
+  border: 1px solid #cfe5d7;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.privacy-proof-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+}
+
+.privacy-proof-icon svg {
+  width: 52px;
+  height: 52px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.privacy-proof strong {
+  font-size: 15px;
+}
+
+.privacy-proof > span:last-child {
+  color: #53655b;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.status-card-footer {
+  min-height: 40px;
+  padding: 9px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #5e696f;
+  background: #f7f9fa;
+  border-top: 1px solid #e0e5e7;
+  font-size: 10px;
+}
+
+.monitoring-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--green-dark);
+  font-weight: 850;
+}
+
+.monitoring-state i {
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgb(17 129 61 / 25%);
+  animation: monitoring-pulse 1.6s ease-out infinite;
+}
+
+@keyframes monitoring-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(17 129 61 / 30%); }
+  70%, 100% { box-shadow: 0 0 0 7px rgb(17 129 61 / 0%); }
+}
+
+.status-card-footer time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 850;
+}
+
+.event-alert-row {
+  margin-top: 16px;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid #e3e7e9;
+  border-bottom: 1px solid #e3e7e9;
+}
+
+.event-alert-row p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.event-card-minimal .risk-badge {
+  min-height: 54px;
+  font-size: 18px;
+}
+
+.event-actions small {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.simple-event-card {
+  padding: 16px;
+  border: 1px solid #d5dce0;
+  border-left: 5px solid var(--green-dark);
+  border-radius: 7px;
+}
+
+.simple-event-card p {
+  margin: 6px 0;
+}
+
+.history-card {
+  min-height: 112px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #d9dfe2;
+  border-radius: 8px;
+  box-shadow: 0 7px 20px rgb(22 43 56 / 6%);
+}
+
+.history-marker {
+  width: 12px;
+  height: 12px;
+  background: var(--green-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px #e7f5ed;
+}
+
+.history-card.level-1 .history-marker { background: var(--blue); box-shadow: 0 0 0 6px #e7f3fb; }
+.history-card.level-2 .history-marker { background: var(--amber); box-shadow: 0 0 0 6px #fff2df; }
+.history-card.level-3 .history-marker { background: var(--red); box-shadow: 0 0 0 6px #fde9e8; }
+.history-card.level-u .history-marker { background: var(--violet); box-shadow: 0 0 0 6px #efebfa; }
+
+.history-content time {
+  color: var(--muted);
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.history-content h3 {
+  margin: 5px 0 0;
+  font-size: 17px;
+}
+
+.history-content p {
+  margin: 4px 0 0;
+  color: #5b666d;
+  font-size: 11px;
+}
+
+.history-result {
+  padding: 6px 9px;
+  color: #4f5d65;
+  background: #eef2f4;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.metadata-cards {
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .status-card-body {
+    min-height: 0;
+    padding: 18px 16px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .privacy-proof {
+    min-height: 120px;
+  }
+
+  .status-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .event-alert-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .event-actions small {
+    width: 100%;
+    margin: 4px 0 0;
+  }
+
+  .history-card {
+    padding: 15px 14px;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .history-result {
+    grid-column: 2;
+    width: fit-content;
+  }
+}
+
   </style>
 </head>
 <body>
   <div class="app-shell">
     <div id="candidateReviewBanner" class="candidate-review-banner" role="status">
-      QR DEMO · RECORDED METADATA · NOT LIVE · CANDIDATE
+      심사위원용 기록 데모 · 실시간 데이터가 아닙니다
     </div>
 
     <header class="site-header">
@@ -2810,7 +3084,7 @@ svg {
         </span>
         <div>
           <h1>Privacy-Zero Safety Layer</h1>
-          <p>Metadata-only patient monitoring</p>
+          <p>프라이버시 중심 안전 모니터링</p>
         </div>
       </div>
 
@@ -2821,7 +3095,7 @@ svg {
         </div>
         <div class="connection-state is-recorded">
           <span class="live-dot" aria-hidden="true"></span>
-          <span id="connectionStatus">기록 metadata 불러오는 중</span>
+          <span id="connectionStatus">기록 화면 불러오는 중</span>
         </div>
         <span class="facility-avatar" aria-hidden="true">
           <svg viewBox="0 0 24 24">
@@ -2836,16 +3110,12 @@ svg {
     <main class="screen-stage">
       <section class="demo-toolbar" aria-labelledby="demoToolbarTitle">
         <div class="demo-toolbar-copy">
-          <span class="demo-source-badge">ACTUAL FPGA · RECORDED</span>
+          <span class="demo-source-badge">기록 데모</span>
           <div>
-            <h2 id="demoToolbarTitle">기록 상태 선택</h2>
-            <p id="demoSceneDescription">분류 입력과 분리된 UI 확인용 선택기입니다.</p>
+            <h2 id="demoToolbarTitle">상태 보기</h2>
+            <p id="demoSceneDescription">Level을 눌러 각 화면을 확인할 수 있습니다.</p>
           </div>
         </div>
-        <label class="demo-scene-control" for="demoSceneSelect">
-          <span>표시 상태</span>
-          <select id="demoSceneSelect" aria-describedby="demoSceneDescription"></select>
-        </label>
         <div
           id="demoSceneButtons"
           class="demo-scene-buttons"
@@ -2870,25 +3140,10 @@ svg {
             </svg>
           </span>
           <div>
-            <p>Patient Privacy</p>
-            <h2 id="privacyTitle">프라이버시 상태</h2>
+            <p>안전 상태</p>
+            <h2 id="privacyTitle">현재 상태</h2>
           </div>
-          <div class="privacy-summary">
-            <span><strong id="protectedCount">0</strong> 보호 중</span>
-            <span><strong id="privacyAlertCount">0</strong> 확인 필요</span>
-          </div>
-        </div>
-
-        <div class="privacy-toolbar">
-          <p><strong id="patientCount">0</strong>개 침상</p>
-          <label>
-            <span>정렬</span>
-            <select id="privacySort">
-              <option value="privacy">프라이버시 이상 우선</option>
-              <option value="risk">최근 위험 우선</option>
-              <option value="bed">침상 번호순</option>
-            </select>
-          </label>
+          <div class="privacy-summary"><span><strong id="patientCount">0</strong>개 침상</span></div>
         </div>
 
         <div id="privacyList" class="privacy-list" aria-live="polite"></div>
@@ -2897,7 +3152,7 @@ svg {
       <section id="eventsView" class="app-view events-view" aria-labelledby="eventsTitle" hidden>
         <div class="event-heading">
           <div class="event-heading-copy">
-            <h2 id="eventsTitle">이벤트 발생</h2>
+            <h2 id="eventsTitle">이벤트</h2>
           </div>
           <button id="alarmToggle" class="alarm-toggle" type="button" aria-pressed="false" title="경보음 끄기">
             <svg class="bell-on" aria-hidden="true" viewBox="0 0 24 24">
@@ -2919,7 +3174,6 @@ svg {
           <span>이벤트 <b id="activeEventCount">0</b>건</span>
         </div>
 
-        <div class="read-only-note">확인 버튼은 이 브라우저에서만 동작하는 시연용입니다. 서버 기록은 생성하지 않습니다.</div>
         <div id="eventList" class="event-list" aria-live="polite"></div>
       </section>
 
@@ -2934,33 +3188,14 @@ svg {
             </svg>
           </span>
           <div>
-            <p>Recorded data · Read only</p>
-            <h2 id="metadataTitle">Metadata · Audit</h2>
+            <p>상태 기록</p>
+            <h2 id="metadataTitle">기록</h2>
           </div>
         </div>
 
-        <details id="metadataAIShadowPanel" class="metadata-ai-shadow" hidden>
-          <summary class="metadata-ai-shadow-title">
-            <span class="shadow-badge">SHADOW MODE</span>
-            <div>
-              <p>개발 정보</p>
-              <h3>AI shadow · 기존 FSM과 분리</h3>
-            </div>
-          </summary>
-          <div class="metadata-ai-shadow-body">
-            <dl>
-              <div><dt>Model</dt><dd id="metadataAIModel">NOT TRAINED</dd></div>
-              <div><dt>Feature Schema</dt><dd id="metadataAIFeatureSchema">META_FEATURE_SCHEMA_V1</dd></div>
-              <div><dt>AI Fall-like Score</dt><dd id="metadataAIScore">N/A</dd></div>
-              <div><dt>FSM Decision Source</dt><dd id="metadataAIFSMSource">EXISTING RULE FSM</dd></div>
-              <div><dt>FSM Control</dt><dd id="metadataAIFSMControl">NOT CONNECTED</dd></div>
-            </dl>
-          </div>
-        </details>
-
         <div class="metadata-table-wrap">
           <div id="metadataCards" class="metadata-cards" aria-live="polite"></div>
-          <div id="metadataEmpty" class="metadata-empty" hidden>표시할 metadata가 없습니다.</div>
+          <div id="metadataEmpty" class="metadata-empty" hidden>표시할 기록이 없습니다.</div>
         </div>
       </section>
     </main>
@@ -2972,14 +3207,14 @@ svg {
           <rect x="9" y="10" width="6" height="6" rx="1"></rect>
           <path d="M10.5 10V8.5a1.5 1.5 0 0 1 3 0V10"></path>
         </svg>
-        <span>프라이버시 상태</span>
+        <span>현재 상태</span>
       </button>
       <button class="nav-button" type="button" data-view="events" aria-selected="false">
         <svg aria-hidden="true" viewBox="0 0 24 24">
           <path d="M10.3 21h3.4"></path>
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
         </svg>
-        <span>이벤트 발생</span>
+        <span>이벤트</span>
         <b id="eventTabCount" class="nav-count">0</b>
       </button>
       <button class="nav-button" type="button" data-view="metadata" aria-selected="false">
@@ -2988,7 +3223,7 @@ svg {
           <path d="M14 2v6h6"></path>
           <path d="M8 13h8M8 17h8M8 9h2"></path>
         </svg>
-        <span>Metadata · Audit</span>
+        <span>기록</span>
       </button>
     </nav>
   </div>
@@ -3006,10 +3241,10 @@ const EMBEDDED_DEMO_DATA = window.__PRIVACYZERO_DEMO_DATA__ || null;
 const riskPriority = { "3": 0, "2": 1, U: 2, "1": 3, "0": 4 };
 const riskLabels = {
   "3": "즉시 확인 필요",
-  "2": "침대 밖 이동",
-  U: "센서 상태 확인",
-  "1": "침대 경계 접근",
-  "0": "정상",
+  "2": "침상 이탈",
+  U: "장치 확인 필요",
+  "1": "침상 가장자리 접근",
+  "0": "정상 감시 중",
 };
 
 const urlState = new URLSearchParams(window.location.search);
@@ -3022,14 +3257,12 @@ const state = {
   beds: [],
   sourceHealth: null,
   profile1Status: null,
-  metadataAI: null,
   demoData: null,
   activeSceneId: null,
   polling: false,
   view: VIEWS.includes(requestedView)
     ? requestedView
     : "privacy",
-  privacySort: localStorage.getItem("privacyZeroSort") || "privacy",
   alarmMuted: urlState.has("muted")
     ? urlState.get("muted") === "1"
     : localStorage.getItem("privacyZeroAlarmMuted") === "true",
@@ -3048,9 +3281,6 @@ const elements = {
   metadataView: document.querySelector("#metadataView"),
   eventTabCount: document.querySelector("#eventTabCount"),
   patientCount: document.querySelector("#patientCount"),
-  protectedCount: document.querySelector("#protectedCount"),
-  privacyAlertCount: document.querySelector("#privacyAlertCount"),
-  privacySort: document.querySelector("#privacySort"),
   privacyList: document.querySelector("#privacyList"),
   alarmToggle: document.querySelector("#alarmToggle"),
   alarmState: document.querySelector("#alarmState"),
@@ -3058,13 +3288,6 @@ const elements = {
   eventList: document.querySelector("#eventList"),
   metadataCards: document.querySelector("#metadataCards"),
   metadataEmpty: document.querySelector("#metadataEmpty"),
-  metadataAIShadowPanel: document.querySelector("#metadataAIShadowPanel"),
-  metadataAIModel: document.querySelector("#metadataAIModel"),
-  metadataAIFeatureSchema: document.querySelector("#metadataAIFeatureSchema"),
-  metadataAIScore: document.querySelector("#metadataAIScore"),
-  metadataAIFSMSource: document.querySelector("#metadataAIFSMSource"),
-  metadataAIFSMControl: document.querySelector("#metadataAIFSMControl"),
-  demoSceneSelect: document.querySelector("#demoSceneSelect"),
   demoSceneButtons: document.querySelector("#demoSceneButtons"),
   demoSceneDescription: document.querySelector("#demoSceneDescription"),
   runtimeActivity: document.querySelector("#runtimeActivity"),
@@ -3083,28 +3306,6 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
-}
-
-function secondsAgo(value) {
-  if (value === null || value === undefined || value === "") return "측정 불가";
-  const seconds = Number(value);
-  if (!Number.isFinite(seconds)) return "측정 불가";
-  if (seconds < 1) return "방금 전";
-  if (seconds < 60) return `${seconds}초 전`;
-  return `${Math.floor(seconds / 60)}분 전`;
-}
-
-function measuredRate(value) {
-  const rate = Number(value);
-  return Number.isFinite(rate) && rate > 0 ? `${rate.toFixed(1)} Hz` : "측정 불가";
-}
-
-function measuredLatency(value) {
-  if (value === null || value === undefined || value === "") return "측정 불가";
-  const latency = Number(value);
-  return Number.isFinite(latency) && latency >= 0
-    ? `${latency.toFixed(2)}초`
-    : "측정 불가";
 }
 
 function formatTimestamp(bed, includeSeconds = true) {
@@ -3170,86 +3371,24 @@ function hasPrivacyIssue(bed) {
   );
 }
 
-function privacyToggle(label, value) {
-  const displayValue = value ? "true" : "false";
-  return `
-    <div class="privacy-row">
-      <span>${escapeHtml(label)}</span>
-      <span class="privacy-toggle is-${displayValue}" role="img" aria-label="${escapeHtml(label)} ${displayValue}">
-        <i aria-hidden="true"></i>
-        <b>${displayValue}</b>
-      </span>
-    </div>
-  `;
-}
-
-function autoLogToggle(saved) {
-  if (saved === null || saved === undefined) {
-    return `
-      <span class="auto-log-toggle is-demo" role="img" aria-label="Public demo read only">
-        <i aria-hidden="true"></i>
-        <b>read only</b>
-      </span>
-    `;
-  }
-  const value = saved ? "saved" : "unsaved";
-  return `
-    <span class="auto-log-toggle is-${value}" role="img" aria-label="Auto log ${value}">
-      <i aria-hidden="true"></i>
-      <b>${value}</b>
-    </span>
-  `;
-}
-
-function statusTone(value) {
-  const normalized = String(value || "UNKNOWN").toLowerCase();
-  return normalized.replace(/[^a-z0-9_-]/g, "-");
-}
-
-function statusChip(label, value) {
-  return `<span class="status-chip status-${statusTone(value)}"><b>${escapeHtml(label)}</b>${escapeHtml(value ?? "-")}</span>`;
-}
-
 function displayRiskLabel(bed) {
-  if (bed.current_state === "INITIALIZING") return "초기화 중 · 최초 위치 증거 대기";
-  if (bed.tracking_status === "FLOOR_EVIDENCE_STALE") return "Floor 증거 오래됨 · 확인 유지";
-  if (bed.source_status && bed.source_status !== "OK" && String(bed.display_level) === "2") {
-    return "침상 이탈 표시 유지 · 소스 확인";
-  }
-  if (bed.source_status && bed.source_status !== "OK" && String(bed.display_level) === "3") {
-    return "긴급 경고 유지 · 소스 확인";
-  }
   return riskLabels[bed.risk_level] || bed.status_label;
 }
 
-function sortedPrivacyBeds() {
-  const beds = [...state.beds];
-  if (state.privacySort === "bed") {
-    return beds.sort((a, b) =>
-      a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
-    );
-  }
-  if (state.privacySort === "risk") {
-    return beds.sort(
-      (a, b) =>
-        (riskPriority[a.risk_level] ?? 99) - (riskPriority[b.risk_level] ?? 99) ||
-        a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
-    );
-  }
-  return beds.sort(
-    (a, b) =>
-      Number(hasPrivacyIssue(b)) - Number(hasPrivacyIssue(a)) ||
-      (riskPriority[a.risk_level] ?? 99) - (riskPriority[b.risk_level] ?? 99) ||
-      a.bed_id.localeCompare(b.bed_id, "ko", { numeric: true }),
-  );
+function actionGuide(bed) {
+  const level = String(bed.display_level ?? bed.risk_level ?? "U");
+  return {
+    "0": "이상 징후 없이 정상적으로 감시하고 있습니다.",
+    "1": "침상 가장자리 상태를 확인해주세요.",
+    "2": "침상 이탈 여부를 확인해주세요.",
+    "3": "즉시 대상자의 상태를 확인해주세요.",
+    U: "카메라 또는 장치 연결 상태를 확인해주세요.",
+  }[level] || "현재 상태를 확인해주세요.";
 }
 
 function renderPrivacy() {
-  const beds = sortedPrivacyBeds();
-  const issueCount = beds.filter(hasPrivacyIssue).length;
+  const beds = [...state.beds];
   elements.patientCount.textContent = String(beds.length);
-  elements.protectedCount.textContent = String(beds.length - issueCount);
-  elements.privacyAlertCount.textContent = String(issueCount);
 
   if (!beds.length) {
     elements.privacyList.innerHTML =
@@ -3260,54 +3399,39 @@ function renderPrivacy() {
   elements.privacyList.innerHTML = beds
     .map((bed) => {
       const issue = hasPrivacyIssue(bed);
-      const observedRate = Number(bed.metadata_refresh_hz_observed);
-      const hasObservedRate = Number.isFinite(observedRate) && observedRate > 0;
-      const flow = hasObservedRate
-        ? Math.min(100, (observedRate / 5) * 100)
-        : 0;
-      const flowLabel = hasObservedRate ? `${observedRate.toFixed(1)} Hz` : "기록 없음";
+      const level = String(bed.display_level ?? bed.risk_level ?? "U");
       return `
-        <article class="patient-card${issue ? " has-privacy-issue" : ""}${bed.source_issue ? " has-source-issue" : ""}">
+        <article class="patient-card status-card level-${escapeHtml(level.toLowerCase())}${issue ? " has-privacy-issue" : ""}">
           <header class="patient-card-header">
             <div>
-              <span class="patient-bed">${escapeHtml(bed.bed_id)}</span>
+              <span class="patient-bed">침상</span>
               <h3>${escapeHtml(bed.bed_id)} 침상</h3>
             </div>
             <span class="privacy-result">
               <i aria-hidden="true"></i>
-              ${issue
-                ? "프라이버시 확인 필요"
-                : bed.source_issue
-                  ? "프라이버시 보호 · 소스 확인"
-                  : "프라이버시 보호 중"}
+              ${issue ? "프라이버시 확인 필요" : "프라이버시 보호 중"}
             </span>
           </header>
 
-          <div class="patient-card-body">
-            <div class="privacy-controls">
-              <div class="privacy-mode-row">
-                <span>Privacy Mode</span>
-                <strong>${escapeHtml(bed.privacy_mode)}</strong>
-              </div>
-              ${privacyToggle("Raw 표시 여부", bed.raw_displayed)}
-              ${privacyToggle("Raw 저장 여부", bed.raw_saved_by_app)}
-              ${privacyToggle("Raw 전송 여부", bed.raw_transmitted_by_app)}
+          <div class="status-card-body">
+            <div class="status-primary">
+              <span>현재 상태</span>
+              <strong class="status-level level-${escapeHtml(level.toLowerCase())}">Level ${escapeHtml(level)}</strong>
+              <h3>${escapeHtml(displayRiskLabel(bed))}</h3>
+              <p>${escapeHtml(actionGuide(bed))}</p>
             </div>
-
-            <div class="metadata-flow">
-              <div class="flow-ring" style="--flow: ${flow}">
-                <div>
-                  <strong>${flowLabel}</strong>
-                  <span>기록 샘플</span>
-                </div>
-              </div>
-              <p>기록 metadata</p>
+            <div class="privacy-proof">
+              <span class="privacy-proof-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg>
+              </span>
+              <strong>프라이버시 보호</strong>
+              <span>원본 영상은 표시·저장·전송하지 않습니다.</span>
             </div>
           </div>
 
-          <footer class="patient-card-footer">
-            <span>기록 프레임 ${escapeHtml(bed.source_frame_id)}</span>
-            <span>Display Level ${escapeHtml(bed.display_level ?? bed.risk_level)} · Current ${escapeHtml(bed.current_level ?? bed.risk_level)}</span>
+          <footer class="status-card-footer">
+            <span class="monitoring-state"><i aria-hidden="true"></i> 기록 화면 작동 중</span>
+            <time data-live-clock datetime="">--:--:--</time>
           </footer>
         </article>
       `;
@@ -3318,6 +3442,7 @@ function renderPrivacy() {
 function actionButtons(bed) {
   const ackState = bed.acknowledgement?.state || "UNCONFIRMED";
   const incidentId = bed.incident_id || "";
+  if (!incidentId) return "";
   const startDisabled =
     !incidentId || ackState !== "OPEN_UNACKNOWLEDGED" ? " disabled" : "";
   const completeDisabled =
@@ -3332,50 +3457,27 @@ function actionButtons(bed) {
       <span class="ack-state ack-${escapeHtml(ackState)}">${escapeHtml(ackLabel)}</span>
       <button type="button" class="outline-button" data-bed-id="${escapeHtml(bed.bed_id)}" data-incident-id="${escapeHtml(incidentId)}" data-action="STARTED"${startDisabled}>확인 시작</button>
       <button type="button" class="confirm-button" data-bed-id="${escapeHtml(bed.bed_id)}" data-incident-id="${escapeHtml(incidentId)}" data-action="COMPLETED"${completeDisabled}>확인 완료</button>
+      <small>버튼 동작은 이 브라우저 화면에만 반영됩니다.</small>
     </div>
   `;
 }
 
-function compactZoneLabel(value) {
-  const zone = String(value || "NONE").toUpperCase();
-  return ["BED", "EXIT", "FLOOR"].includes(zone) ? `${zone} ZONE` : "NONE";
-}
-
-function compactSourceLabel(bed) {
-  return bed.source_status === "OK" && bed.tracking_status === "TRACKING"
-    ? "OK"
-    : "CHECK";
-}
-
 function compactEventCard(bed) {
+  const level = String(bed.display_level ?? bed.risk_level ?? "U");
   return `
-    <article class="event-card compact-event-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
-      <div class="event-card-content">
-        <header>
-          <div>
-            <span class="patient-bed">침상</span>
-            <h3>${escapeHtml(bed.bed_id)}</h3>
-          </div>
-          <time>${escapeHtml(formatTimestamp(bed))}</time>
-        </header>
-        <div class="compact-status-grid">
-          <div>
-            <span>Risk Level</span>
-            <strong class="compact-level level-${escapeHtml(String(bed.display_level ?? bed.risk_level).toLowerCase())}">Level ${escapeHtml(bed.display_level ?? bed.risk_level)}</strong>
-          </div>
-          <div><span>Observed Zone</span><strong>${escapeHtml(compactZoneLabel(bed.observed_zone))}</strong></div>
-          <div><span>Committed Zone</span><strong>${escapeHtml(compactZoneLabel(bed.committed_zone))}</strong></div>
-          <div><span>Source</span><strong>${escapeHtml(compactSourceLabel(bed))}</strong></div>
-        </div>
-        ${actionButtons(bed)}
-      </div>
+    <article class="compact-event-card simple-event-card level-${escapeHtml(level.toLowerCase())}">
+      <span class="patient-bed">${escapeHtml(bed.bed_id)}</span>
+      <strong>Level ${escapeHtml(level)} · ${escapeHtml(displayRiskLabel(bed))}</strong>
+      <p>${escapeHtml(actionGuide(bed))}</p>
+      <time>${escapeHtml(formatTimestamp(bed))}</time>
+      ${actionButtons(bed)}
     </article>
   `;
 }
 
 function renderEvents() {
   const alerts = state.beds.filter((bed) => String(bed.risk_level) !== "0");
-  const events = [...(compactMode ? state.beds : alerts)]
+  const events = [...alerts]
     .sort(
       (a, b) =>
         Number(a.acknowledgement?.state === "CLOSED") -
@@ -3399,7 +3501,7 @@ function renderEvents() {
   }
 
   if (compactMode) {
-    elements.eventList.innerHTML = events.map(compactEventCard).join("");
+    elements.eventList.innerHTML = state.beds.map(compactEventCard).join("");
     return;
   }
 
@@ -3411,13 +3513,12 @@ function renderEvents() {
           <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
         </span>
         <div class="healthy-copy">
-          <span class="event-eyebrow">MONITORING ACTIVE · RECORDED REPLAY</span>
           <h3>Level 0 · 정상 감시 중</h3>
-          <p>${escapeHtml(bed.bed_id)} · ${escapeHtml(compactZoneLabel(bed.committed_zone))} · ${escapeHtml(measuredRate(bed.metadata_refresh_hz_observed))} 기록 샘플</p>
+          <p>${escapeHtml(bed.bed_id)} · 이상 징후 없음</p>
         </div>
         <div class="healthy-status">
           <time data-live-clock datetime="">--:--:--</time>
-          <span><i aria-hidden="true"></i> Source ${escapeHtml(compactSourceLabel(bed))}</span>
+          <span><i aria-hidden="true"></i> 정상</span>
         </div>
       </article>
     `;
@@ -3431,7 +3532,7 @@ function renderEvents() {
         <article class="event-card event-card-minimal level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
           <header class="event-minimal-header">
             <div>
-              <span class="event-eyebrow">${escapeHtml(bed.bed_id)} · RECORDED METADATA</span>
+              <span class="patient-bed">${escapeHtml(bed.bed_id)} 침상</span>
               <h3>${escapeHtml(displayRiskLabel(bed))}</h3>
             </div>
             <div class="event-recorded-time">
@@ -3440,30 +3541,12 @@ function renderEvents() {
             </div>
           </header>
 
-          <div class="event-primary-row">
+          <div class="event-alert-row">
             <strong class="risk-badge risk-${escapeHtml(String(bed.risk_level).toLowerCase())}">
               Level ${escapeHtml(bed.display_level ?? bed.risk_level)}
-              <small>${escapeHtml(bed.event_type)}</small>
             </strong>
-            <div class="event-summary-grid">
-              <div><span>Zone</span><strong>${escapeHtml(compactZoneLabel(bed.committed_zone))}</strong></div>
-              <div><span>Transition</span><strong>${escapeHtml(bed.transition_phase ?? "-")}</strong></div>
-              <div><span>Tracking</span><strong>${escapeHtml(bed.tracking_status ?? "-")}</strong></div>
-              <div><span>Source</span><strong>${escapeHtml(compactSourceLabel(bed))}</strong></div>
-            </div>
+            <p>${escapeHtml(actionGuide(bed))}</p>
           </div>
-
-          <details class="event-technical">
-            <summary>세부 metadata</summary>
-            <dl>
-              <div><dt>Current / Display</dt><dd>${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</dd></div>
-              <div><dt>Observed / Committed</dt><dd>${escapeHtml(bed.observed_zone ?? "-")} / ${escapeHtml(bed.committed_zone ?? "-")}</dd></div>
-              <div><dt>Motion</dt><dd>${escapeHtml(bed.motion_count)}</dd></div>
-              <div><dt>ROI B / E / F</dt><dd>${escapeHtml(bed.bed_count)} / ${escapeHtml(bed.exit_count)} / ${escapeHtml(bed.floor_count)}</dd></div>
-              <div><dt>No motion</dt><dd>${bed.no_motion_duration_s === null ? "계산 불가" : `${escapeHtml(bed.no_motion_duration_s)}s`}</dd></div>
-              <div><dt>RAW</dt><dd>표시·저장·전송 OFF</dd></div>
-            </dl>
-          </details>
 
           ${actionButtons(bed)}
         </article>
@@ -3482,76 +3565,18 @@ function renderMetadata() {
   elements.metadataCards.innerHTML = beds
     .map(
       (bed) => `
-        <article class="metadata-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
-          <header>
-            <div>
-              <span class="event-eyebrow">${escapeHtml(bed.bed_id)} · READ ONLY</span>
-              <h3>Level ${escapeHtml(bed.display_level ?? bed.risk_level)} · ${escapeHtml(displayRiskLabel(bed))}</h3>
-            </div>
-            <div class="event-recorded-time"><span>기록 시각</span><time>${escapeHtml(formatTimestamp(bed))}</time></div>
-          </header>
-
-          <div class="metadata-kpis">
-            <div><span>Motion</span><strong>${escapeHtml(bed.motion_count)}</strong></div>
-            <div><span>ROI · B / E / F</span><strong>${escapeHtml(bed.bed_count)} / ${escapeHtml(bed.exit_count)} / ${escapeHtml(bed.floor_count)}</strong></div>
-            <div><span>Zone</span><strong>${escapeHtml(bed.observed_zone ?? "-")} → ${escapeHtml(bed.committed_zone ?? "-")}</strong></div>
-            <div><span>No motion</span><strong>${bed.no_motion_duration_s === null ? "계산 불가" : `${escapeHtml(bed.no_motion_duration_s)}s`}</strong></div>
+        <article class="history-card level-${escapeHtml(String(bed.risk_level).toLowerCase())}">
+          <span class="history-marker" aria-hidden="true"></span>
+          <div class="history-content">
+            <time>${escapeHtml(formatTimestamp(bed))}</time>
+            <h3>${escapeHtml(bed.bed_id)} · Level ${escapeHtml(bed.display_level ?? bed.risk_level)}</h3>
+            <p>${escapeHtml(displayRiskLabel(bed))}</p>
           </div>
-
-          <div class="metadata-health-row">
-            ${statusChip("Tracking", bed.tracking_status)}
-            ${statusChip("Source", bed.source_status)}
-            <span>Protocol v${escapeHtml(bed.protocol_version ?? "-")}</span>
-            <span>${escapeHtml(measuredRate(bed.metadata_refresh_hz_observed))}</span>
-          </div>
-
-          <details class="metadata-technical">
-            <summary>기술 필드 보기</summary>
-            <dl>
-              <div><dt>Current / Display</dt><dd>${escapeHtml(bed.current_level ?? bed.risk_level)} / ${escapeHtml(bed.display_level ?? bed.risk_level)}</dd></div>
-              <div><dt>Low horizontal hint</dt><dd>${String(bed.low_horizontal_hint)}</dd></div>
-              <div><dt>Event latency</dt><dd>${escapeHtml(measuredLatency(bed.event_alert_latency_s_observed))}</dd></div>
-              <div><dt>Frame</dt><dd>${escapeHtml(bed.source_frame_id)}</dd></div>
-            </dl>
-          </details>
-
-          <footer>
-            <span>AUDIT</span>
-            <strong>브라우저 시연 · 서버 로그 미생성</strong>
-            <span>RAW 표시·저장·전송 OFF</span>
-          </footer>
+          <span class="history-result">화면 표시</span>
         </article>
       `,
     )
     .join("");
-}
-
-function renderMetadataAI() {
-  const ai = state.metadataAI;
-  const enabled = ai?.ai_mode === "SHADOW";
-  elements.metadataAIShadowPanel.hidden = !enabled;
-  if (!enabled) return;
-  const modelLabel = String(ai.model_id || "METAFALL_MLP8")
-    .replace("_SHADOW_20260804", "")
-    .replaceAll("_", " ");
-  elements.metadataAIModel.textContent = ai.model_status === "NOT_TRAINED"
-    ? "NOT TRAINED"
-    : `${modelLabel} · SHADOW ONLY`;
-  elements.metadataAIFeatureSchema.textContent = String(
-    ai.feature_schema || "META_FEATURE_SCHEMA_V1",
-  ).replaceAll("_", " ");
-  elements.metadataAIScore.textContent =
-    ai.fall_like_score !== null &&
-    ai.fall_like_score !== undefined &&
-    Number.isFinite(Number(ai.fall_like_score))
-    ? Number(ai.fall_like_score).toFixed(3)
-    : "N/A";
-  elements.metadataAIFSMSource.textContent = String(
-    ai.fsm_decision_source || "EXISTING RULE FSM",
-  ).replaceAll("_", " ");
-  elements.metadataAIFSMControl.textContent = String(
-    ai.fsm_control || "NOT CONNECTED",
-  ).replaceAll("_", " ");
 }
 
 function renderView() {
@@ -3670,18 +3695,18 @@ function updateRuntimeStatus() {
   const bed = state.beds[0];
   if (!bed) {
     elements.runtimeStatus.textContent = "기록 화면 대기";
-    elements.runtimeDetail.textContent = "표시할 metadata가 없습니다.";
+    elements.runtimeDetail.textContent = "표시할 기록이 없습니다.";
     elements.runtimeActivity.className = "runtime-activity is-warning";
     return;
   }
   const level = String(bed.display_level ?? bed.risk_level ?? "U");
-  const sourceOk = compactSourceLabel(bed) === "OK";
+  const sourceOk = !bed.source_issue;
   elements.runtimeStatus.textContent = sourceOk
     ? level === "0"
       ? "기록 재생 정상"
       : `Level ${level} 상태 표시 중`
     : "소스 확인 화면 표시 중";
-  elements.runtimeDetail.textContent = `${bed.bed_id} · ${compactZoneLabel(bed.committed_zone)} · ${measuredRate(bed.metadata_refresh_hz_observed)}`;
+  elements.runtimeDetail.textContent = `${bed.bed_id} · 화면 갱신 중`;
   elements.runtimeActivity.className = `runtime-activity level-${level.toLowerCase()}${sourceOk ? "" : " is-warning"}`;
 }
 
@@ -3689,7 +3714,6 @@ function renderAll() {
   renderPrivacy();
   renderEvents();
   renderMetadata();
-  renderMetadataAI();
   updateRuntimeStatus();
   updateLiveClocks();
   syncAlarmAudio();
@@ -3703,9 +3727,7 @@ function applyScene(sceneId, { updateUrl = true } = {}) {
   state.beds = Array.isArray(snapshot.beds) ? snapshot.beds : [];
   state.sourceHealth = snapshot.source_health || null;
   state.profile1Status = snapshot.profile1_fsm || null;
-  state.metadataAI = snapshot.metadata_ai || null;
 
-  elements.demoSceneSelect.value = snapshot.id;
   elements.demoSceneButtons
     .querySelectorAll("button[data-scene-id]")
     .forEach((button) => {
@@ -3713,12 +3735,12 @@ function applyScene(sceneId, { updateUrl = true } = {}) {
       button.classList.toggle("is-active", selected);
       button.setAttribute("aria-pressed", String(selected));
     });
-  elements.demoSceneDescription.textContent = snapshot.description;
+  elements.demoSceneDescription.textContent = `${snapshot.label} 화면을 표시하고 있습니다.`;
   elements.candidateReviewBanner.textContent =
-    state.profile1Status?.label || "QR DEMO · RECORDED METADATA · NOT LIVE";
+    "심사위원용 기록 데모 · 실시간 데이터가 아닙니다";
   elements.candidateReviewBanner.hidden = false;
   elements.connectionStatus.textContent =
-    state.sourceHealth?.message || "기록 metadata · 라이브 연결 아님";
+    "기록 데모 · 실시간 연동 아님";
 
   const sourceState = state.sourceHealth?.state || "DEGRADED";
   document.body.classList.toggle("is-disconnected", sourceState === "ERROR");
@@ -3750,9 +3772,6 @@ async function loadDemoData() {
       throw new Error("demo scenes are missing");
     }
     state.demoData = payload;
-    elements.demoSceneSelect.innerHTML = payload.scenes
-      .map((scene) => `<option value="${escapeHtml(scene.id)}">${escapeHtml(scene.label)}</option>`)
-      .join("");
     elements.demoSceneButtons.innerHTML = payload.scenes
       .map((scene) => {
         const level = String(scene.beds?.[0]?.display_level ?? "U");
@@ -3782,7 +3801,7 @@ async function loadDemoData() {
     elements.connectionStatus.textContent = "기록 데모를 불러오지 못했습니다";
     document.body.classList.add("is-disconnected");
     elements.privacyList.innerHTML =
-      '<div class="empty-state">기록 metadata 파일을 불러오지 못했습니다.</div>';
+      '<div class="empty-state">기록 화면을 불러오지 못했습니다.</div>';
     console.error(error);
   }
 }
@@ -3824,17 +3843,6 @@ elements.navButtons.forEach((button) => {
     renderView();
     document.querySelector(".screen-stage").scrollTo({ top: 0, behavior: "smooth" });
   });
-});
-
-elements.privacySort.value = state.privacySort;
-elements.privacySort.addEventListener("change", () => {
-  state.privacySort = elements.privacySort.value;
-  localStorage.setItem("privacyZeroSort", state.privacySort);
-  renderPrivacy();
-});
-
-elements.demoSceneSelect.addEventListener("change", () => {
-  applyScene(elements.demoSceneSelect.value);
 });
 
 elements.demoSceneButtons.addEventListener("click", (event) => {
